@@ -1,0 +1,40 @@
+.slick-track {
+  display: flex;
+}
+
+.slick-slide {
+  height: inherit;
+}
+
+.single__prd {
+  height: 100%;
+}
+
+.popular-slider .slick-slide {
+  border: 0;
+}
+
+/* new css */
+.spc__text span {
+  text-transform: uppercase;
+  background: #266CFB;
+  color: #fff;
+  display: inline-block;
+  padding: 8px 15px;
+}
+
+.special__offer .prd__box {
+  position: relative;
+}
+
+.spc__text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.prd__box h2 {
+
+  margin: 26px 0 12px;
+}

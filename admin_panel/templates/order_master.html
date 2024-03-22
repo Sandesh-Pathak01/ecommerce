@@ -1,0 +1,60 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}
+IMS
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block breadcrumbtitle %}
+Reports
+{% endblock %}
+
+{% block breadlist %}
+<li class="breadcrumb-item"><a href=""><i class="ri-home-4-line"></i></a></li>
+<li class="breadcrumb-item active" aria-current="page">Reports</li>
+{% endblock %}
+
+{% block content %}
+
+ <!--sucess/error message tracker-->
+ {% include 'includes/message.html' %}
+ <!--============================-->
+
+<div class="content__body">
+
+	<div class="row">
+		<div class="col* col-md-12 col-lg-12">
+			<div class="card">
+				<div class="row">
+					<div class="col* col-md-3 col-lg-3">
+						<div class="card-body">
+							<div class="card-header cardHeaderFlex report_title_head">
+								<h3 class="cardHeaderFlex__title mb-0">IMS Reports</h3>
+							</div>
+							
+							<ul class="list-group">
+								<li class="list-group-item"> <a href="{% url 'all_orders' %}">Pending Orders</a></li>
+								<li class="list-group-item"> <a href="{% url 'processing_orders' %}">Processing Orders</a></li>
+								<li class="list-group-item"> <a href="{% url 'shipped_orders_display' %}">Shipped Orders</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}
+
+{% block modal %}
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

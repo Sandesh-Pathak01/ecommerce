@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Checkout </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="#">Home</a></li>
+        <li class="breadcrumb-item active">Checkout</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="cart__detail">
+        <div class="container">
+          <form action="{% url 'order' %}" method="post">
+            {% csrf_token %}
+            <div class="row no-gutters">
+              <div class="col* col-md-7 col-lg-8 col__left">
+                <div class="card__form card__form--bg" >
+                  <h4 class="card__title">Product Overview</h4>
+                  <div class="table-responsive custom__table">
+                    <table class=" shop-table cart">
+                      <thead>
+                        <tr>
+                          <th  class="product-name">Product</th>
+                          <th class="product-desc" style="width: 300px;">Description</th>
+                          <th class="product-price">Price</th>
+                          <th class="product-quantity">Qty</th>
+                          <th class="product-total">Total</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for d in data %}
+                        <tr>
+                          <td class="product-thumbnail"><img src="{{d.product.image.url}}" alt="title"></td>
+                          <td class="product-name">
+                            <a href="#">{{d.product.name}}</a>
+                            <span class="text-danger d-block">{{d.product.availability}}</span>
+                          </td>
+                          <td class="price-table">Rs {{d.product.new_price}}</td>
+                          <td>{{ d.quantity }}</td>
+                          <td class="price-table">Rs {{d.total_price}}</td>
+                          <input type="hidden" name="total_price[]" id="total_price_input_{{ forloop.counter }}" value="{{d.total_price}}">
+                          <input type="hidden" name="product_name[]" value="{{ d.product.name }}">
+                          <input type="number" name="quantity[]" value="{{d.quantity}}" hidden>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="card__form card__form--bg" >
+                  <div id="billing-form" class="billing-form common__form">
+                    <h4 class="card__title">Delivery Address</h4>
+                    <!-- Order Address Id -->
+                    <input type="hidden" name="shipping_address" value="{{add.id}}">
+                    <!-- Order Status -->
+                    <input type="hidden" name="order_status" value="processing">
+
+                    <div class="row">
+                      <div class="col* col-sm-6 col-md-6 col-12 form__list">
+                        <label>First Name*</label>
+                        <input type="text" required name="first_name" placeholder="First Name" value="{{add.fname}}">
+                      </div>
+
+                      <div class="col* col-sm-6 col-md-6 col-12 form__list">
+                        <label>Last Name*</label>
+                        <input type="text" required name="last_name" placeholder="Last Name" value="{{add.lname}}">
+                      </div>
+
+                      <div class="col* col-sm-6 col-md-6 col-12 form__list">
+                        <label>Email Address*</label>
+                        <input type="email" required name="email" placeholder="Email Address" value="{{add.user.email}}">
+                      </div>
+
+                      <div class="col* col-sm-6 col-md-6 col-12 form__list">
+                        <label>Phone no*</label>
+                        <input type="text" required name="contact" placeholder="Phone number" value="{{add.dlvr_contact}}">
+                      </div>
+
+                      <div class="col-12 form__list">
+                        <label>Address*</label>
+                        <input type="text" required name="address" placeholder="Address line 1" value="{{add.address}}">
+                        <input type="text" name="inner_address" placeholder="Address line 2" value="{{add.inner_address}}">
+                      </div>
+
+                      <div class="col* col-sm-6 col-md-6 col-12 form__list">
+                        <label>Province</label>
+                        <select name="province" required class="form-control customSelect">
+                          <option value="Kathmandu" {% if add.province == "Kathmandu" %} selected {% endif %}>Kathmandu</option>
+                          <option value="Lalitpur" {% if add.province == "Lalitpur" %} selected {% endif %}>Lalitpur</option>
+                          <option value="Bhaktapur" {% if add.province == "Bhaktapur" %} selected {% endif %}>Bhaktapur</option>
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div class="card__form card__form--bg" >
+                  <h4 class="card__title">Select Payment</h4>
+                  <div class="checkout-payment-method">
+                    <div class="payment-method">
+                      <div class="paymentBox mb-15">
+                        <label><input type="radio" name="payment_method" value="CashOnDelivery" required> Cash on Delivery</label>
+                        <div class="payment-detail">
+                          <p>You can pay in cash to our courier when you receive the goods at your doorstep.</p>
+                          <button type="submit" class="btn btn-primary">Confirm Order</button>
+                        </div>
+                      </div>
+
+                      <div class="paymentBox mb-15">
+                      <label>
+                        <input type="radio" name="payment_method" value="online" required> Mobile Wallet
+                      </label>
+                      <div class="payment-detail payment-wallet">
+                        <div class="alert alert-warning mt-4" role="alert">
+                          Login with your eSewa  mobile and PASSWORD (not MPin)
+                        </div>
+
+                        <p>You will be redirected to your eSewa  account to complete your payment:</p>
+                        <ol>
+                          <li> Login to your eSewa  account using your eSewa  ID and your Password</li>
+                          <li> Ensure your eSewa  account is active and has sufficient balance</li>
+                          <li> 3. Enter OTP (one time password) sent to your registered mobile number</li>
+                        </ol>
+
+                        <a href="#">
+                          <img src="images/esewa.png" class="img-fluid" alt="title">
+                        </a>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col* col-md-5 col-lg-4 col__right">
+                <div class="sticky-top sidebar__bg">
+                  <div class="side__box">
+                    <h5>Order Summary </h5>
+                    <ul>
+                      <li>
+                        <span class="summary__left">Subtotal ({{ total_quantity }} Items)</span>
+                        <span class="summary__price">Rs. {{ total_price }}</span>
+                      </li>
+                    </ul>
+
+                    <div class="cart__total cart__totalFlex">
+                      <span class="cart__totalTitle">Total Amount</span>
+                      <div class="right__cartAmt">
+                        <span class="cart__totalAmt"><small>NPR</small> {{ total_price }}</span>
+                        <span class="global__color">VAT Included</span>
+                      </div>
+                      
+                    </div>
+                    <!-- Total Price and quantity send -->
+                    <input type="text" value="{{ total_price }}" name="total_price" hidden>
+                    <input type="text" value="{{ total_quantity }}" name="" hidden>
+                    <!--  -->
+                    <button class="btn btn-color btn-block btn-md" type="submit">Confirm Purchase</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

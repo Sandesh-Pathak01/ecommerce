@@ -1,0 +1,38 @@
+.log_main_banner{
+	float:left;
+	width:100%;
+	background: #eee;
+}
+.deny{
+	float:left;
+	width:100%;
+	height: auto;
+	text-align:center;
+	font-size: 20px;
+	color: rgba(0,0,0,.7);
+	text-transform: capitalize;
+	background: #fff;
+	padding: 30px;
+	box-shadow: 0px 0px 10px 0px #ddd;
+}
+.deny i{
+	font-size: 45px;
+	color: rgba(0,0,0,.7);
+}
+
+.submit_btn{
+  height: 40px;
+  width: auto;
+  border: none;
+  background: #1f7ba3;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .3s ease;
+  border-radius: 5px;
+  padding-left:30px;
+  padding-right: 30px;
+}
+.submit_btn:hover{
+  background: #07597d;
+}

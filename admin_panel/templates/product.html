@@ -1,0 +1,130 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}
+IMS
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block breadcrumbtitle %}
+Product Management
+{% endblock %}
+
+{% block breadlist %}
+<li class="breadcrumb-item"><a href="{% url 'admin_panel_display' %}"><i class="ri-home-4-line"></i></a></li>
+<li class="breadcrumb-item active" aria-current="page">Products</li>
+{% endblock %}
+
+{% block content %}
+
+ <!--sucess/error message tracker-->
+ {% include 'includes/message.html' %}
+ <!--============================-->
+
+<div class="content__body">
+    <div class="card">
+        <div class="card-header cardHeaderFlex">
+            <h3 class="cardHeaderFlex__title mb-0">
+                Products
+            </h3>
+            <div class="cardHeaderFlex__btn">
+                <a href="{% url 'add_product_display' %}"><button type="button" class="btn btn-md btn-success">Create <i class="ri-filter-2-line"></i> </button></a>
+                <button type="button" class="btn btn-md btn-primary" data-toggle="modal" data-target="#FilterModal">Filter <i class="ri-filter-2-line"></i> </button>
+            </div>
+        </div>
+        
+        <div class="card-body" id="stockcardbody">
+            <div class="search_banner">
+                <div class="row">
+                    <div class="col* col-lg-8 col-md-6 d-none d-md-inline">   
+                    </div>
+                    <div class="col* col-lg-4 col-md-6">
+                        {% if not filter %}
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control inputs" placeholder="Search records..." value="{{search}}">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" id="find_btn"><i class="ri-search-line"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+			</div>
+            <div class="table-responsive">
+                <table class="table table__bg table-hover table__center text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Total Quantity</th>
+                            <th>entry by</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        <tr class="trow" data-href="">
+                            <td>{{item.name}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.entry_by}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block modal %}
+
+<!--Filter modal section====================-->
+<div class="modal fade" id="FilterModal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="FilterModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="footerCenterBtnsModalLabel">Filter item options</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="" id="FilterForm" name="FilterForm">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="card formcard">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col* col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form__title">Category</label>
+                                        <select class="select2 form-control inputs" name="category" id="category_id">
+                                            <option></option>
+                                            {% for item in categorylist %}
+                                            <option value="{{item.id}}">{{item.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ====================== -->
+
+{% endblock %}

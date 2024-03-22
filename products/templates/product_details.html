@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+{% include 'includes/ecomsg.html' %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Shop List Detail </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="#">Home</a></li>
+        <li class="breadcrumb-item"><a class="black-text" href="#">Shop List View</a></li>
+        <li class="breadcrumb-item active">Shop List Detail</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="page__detail">
+        <div class="container">
+          <div class="row">
+            <div class="col* col-md-4 col-lg-4 prd__left">
+              <div class="sticky-top">
+                <div class="prd-slider slider ">
+                  <div class="prd__slider">
+                    <a href="{{data.image.url}}" data-fancybox="gallery" data-caption="Caption #1">
+                      <img src="{{data.image.url}}" style="max-height: 38rem;" class="w-100" alt="title">
+                    </a>
+                  </div>
+                  {% if data.image2 %}
+                  <div class="prd__slider">
+                    <a href="{{data.image2.url}}" data-fancybox="gallery" data-caption="Caption #2">
+                      <img src="{{data.image2.url}}" style="max-height: 38rem;" class="w-100" alt="title">
+                    </a>
+                  </div>
+                  {% endif %}
+
+                  {% if data.image3 %}
+                  <div class="prd__slider">
+                    <a href="{{data.image3.url}}" data-fancybox="gallery" data-caption="Caption #2">
+                      <img src="{{data.image3.url}}" style="max-height: 38rem;" class="w-100" alt="title">
+                    </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <div class="col* col-md-8 col-lg-8 prd__right">
+              <div class="prd__details">
+                <span class="stock__infos d-block text-primary mb-2">Availabilty : {{data.availabilty}}</span>
+                <h3 class="prd__titlehead"> {{data.name}}</h3>
+                <div class="prd__star">
+                  <span class="rating">
+                    <i class="las la-star"></i>
+                    <i class="las la-star"></i>
+                    <i class="las la-star"></i>
+                    <i class="las la-star"></i>
+                    <i class="las la-star-half-alt"></i>
+                  </span>
+                  <a href="#">1 customer Review</a>
+                </div>
+
+                <div class="prd__price">
+                  <span class="new__price">NRs . {{data.new_price}}</span>
+                  {% if data.discount %}
+                  <del>NRs . {{data.price}}</del>
+                  {% endif %}
+                </div>
+                
+                <p>{{data.description|truncatechars:250}}... <a href="#complete_details">Complete Details</a></p>
+                
+               
+                <form action="{% url 'add_to_cart' %}" method="post">
+                  {% csrf_token %}
+                <div class="prd__qty">
+                  <h4 class="sm-title">Quantity</h4>
+                  <div class="prd__qtyflex">
+                    <div class="cart__qty">
+                      <div class="input-group spinner">
+                        <div class="input-group-prepend">
+                          <button class="btn text-monospace minus" type="button">
+                            <i class="las la-minus"></i>
+                          </button>
+                        </div>
+                        <input name="quantity" type="number"pyth class="count form-control" min="0" max="10" step="1" value="1">
+                        <input name="product_id" hidden type=""pyth class="count form-control" min="0" max="10" step="1" value="{{data.id}}">
+                        <div class="input-group-append">
+                          <button class="btn text-monospace plus" type="button">
+                            <i class="las la-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="cart__btn cart__ic">
+                      <button type="submit" value="" class="btn btn-theme"><i class="las la-cart-arrow-down"></i> Add to Cart</button>
+                    </div>
+                  </form>
+
+                  <form action="{% url 'add_to_wishlist' %}" method="post">
+                    {% csrf_token %}
+                    <div class="wishlist__btn cart__ic">
+                      <input name="quantity" hidden type="number"pyth class="count form-control" min="0" max="10" step="1" value="1">
+                        <input name="product_id" hidden type=""pyth class="count form-control" min="0" max="10" step="1" value="{{data.id}}">
+                      <button type="submit" value="" class="btn btn-success btn-wish"><i class="las la-heart"></i> </button>
+                    </div>
+                  </form>
+
+
+                  </div>
+
+
+                </div>
+
+                <div class="prd__cartgo">
+                  <div class="cart__btn cart__ic">
+                    <form action="{% url 'cart_display' %}">
+                    <button type="submit" value="" class="btn btn-theme"><i class="las la-cart-arrow-down"></i> Go to Cart</button>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="prd__share">
+                  <div class="social__ic">
+                    <h4 class="sm-title">Share : </h4>
+                    <a href="#">
+                      <i class="lab la-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                      <i class="lab la-twitter"></i>
+                    </a>
+                    <a href="#">
+                      <i class="lab la-instagram"></i>
+                    </a>
+                    <a href="#">
+                      <i class="lab la-linkedin"></i>
+                    </a>
+                    </div>
+                </div>
+              
+              </div>
+            </div>
+
+          </div>
+
+          <div class="prd__infosOther">
+            <div class="theme_tab">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#tab-01" id="complete_details">Product Description</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#tab-02">Additional Information</a>
+                </li>
+
+              </ul>
+
+              <div class="tab-content">
+                <div id="tab-01" class="tab-pane active">
+                  <div class="tab_infos">
+                    <h3 id="">Product details of <strong>{{data.name}}</strong></h3>
+                    <p>{{data.description}}</p>
+                  </div>
+                </div>
+                <div id="tab-02" class="tab-pane fade">
+                  <div class="tab_infos">
+                    <ul class="list-unstyled p-0 col3">
+                      <li>
+                        <label>Color :</label>
+                        <p>{{data.color}}</p>
+                      </li>
+
+                      <li>
+                        <label>Gender :</label>
+                        <p>{{data.gender}}</p>
+                      </li>
+
+                      <li>
+                        <label>Type :</label>
+                        <p>{{data.type}}</p>
+                      </li>
+
+                      <li>
+                        <label>Bag Height (cm) :</label>
+                        <p>{{data.height}} cm</p>
+                      </li>
+
+                      <li>
+                        <label>Bag Width (cm) :</label>
+                        <p>{{data.width}} cm</p>
+                      </li>
+
+                      <li>
+                        <label>Refundable :</label>
+                        <p>{{data.refundable}}</p>
+                      </li>
+                    
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="prd__related">
+            <div class="title__head title__head--flex">
+              <h2>Related Product</h2>
+            </div>
+
+            <div class="relatedPrd-slider slider">
+                {% for d in prod %}
+              <div class="prd__list">
+                <div class="single__prd">
+                  <a href="#">
+                    <figure>
+                      <img src="{{d.image.url}}" class="img-fluid" alt="title">
+                    </figure>
+                  </a>
+
+                  <div class="singlePrd__infos">
+                    <div class="prd__star">
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star-half-alt"></i>
+                    </div>
+                    <h3><a href="#">{{d.name}}</a></h3>
+                    <span class="new__price">NRs . {{d.new_price}}</span>
+                  </div>
+
+                  <div class="btn__cart">
+                    <a href="#" class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></a>
+                  </div>
+                </div>
+              </div>
+                {% endfor %}
+            </div>
+          </div>
+ 
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

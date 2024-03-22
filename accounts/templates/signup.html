@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+
+    <section class="main__content">
+      <div class="login__wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col* col-md-8 col-lg-6 col-xl-5 mid__card">
+              <div class="login__tabs">
+                <h2 class="login__head">Create Account</h2>
+                <form method="post" action="{% url 'signup_user' %}">
+                  {% csrf_token %}
+                  {% for message in messages %}
+                  <div id="message-box" class="hidden">
+                    <p id="message">{{ message }}</p>
+                  </div>
+                  {% endfor %}
+                  <div class="form-group">
+                    <label class="login__title">Username <span class="astrick">*</span></label>
+                    <input type="text" name="username" value="" class="form-control" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="login__title">First Name <span class="astrick">*</span></label>
+                    <input type="text" name="fname" value="" class="form-control" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="login__title">Last Name <span class="astrick">*</span></label>
+                    <input type="text" name="lname" value="" class="form-control" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="login__title">Email <span class="astrick">*</span></label>
+                    <input type="text" name="email" value="" class="form-control" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="login__title">Contact No. <span class="astrick">*</span></label>
+                    <input type="number" name="contact" value="" class="form-control" placeholder="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="login__title">Gender <span class="astrick">*</span></label>
+                    <select name="gender" class="form-control" required>
+                      <option value="">Select gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group">
+                    <label class="login__title">Password <span class="astrick">*</span></label>
+                    <div class="password__eye">
+                      <input id="" type="password" name="password" value="" class="form-control password-field" placeholder="">
+                      <span toggle=".password-field" class="las la-eye-slash field-icon toggle-password"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="login__title">Confirm Password <span class="astrick">*</span></label>
+                    <div class="password__eye">
+                      <input id="" type="password" name="password2" value="" class="form-control password-field" placeholder="">
+                      <span toggle=".password-field" class="las la-eye-slash field-icon toggle-password"></span>
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <div class="login__flex">
+                      <div class="loginLeft__flex">
+                        <div class="custom__control custom-control-inline">
+
+
+                          <input id="check-1" required type="checkbox"><label for="check-1">Accept the Terms of Service</label> 
+                        </div>
+                      </div>
+
+
+                    </div>
+                   
+                  </div>
+  
+                  <div class="form-group">
+                    <button type="submit" value="" class="btn btn-1">Register</button>
+                    <p style="margin-top: 1rem;">Already have a account click here to <a href="{% url 'login_display' %}">Login</a></p>
+                  </div>
+
+  
+                  <p class="my-4 text-muted">--- Or connect with ---</p>
+  
+                  <div class="login__social___buttons">
+                    <a href="#" id="login-with-facebook" data-network="Facebook" class="social__account__button facebook__button">
+                      <i class="lab la-facebook-f"></i>
+                      <span> Sign In with Facebook</span>
+                    </a>
+  
+                    <a href="#"  id="login-with-google" data-network="google" class="social__account__button google__button">
+                      <i class="lab la-google-plus"></i>
+                        <span> Sign In with Google</span>
+                    </a>
+                  </div>  
+  
+                </form>
+  
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script src="{% static 'js/message.js' %}"></script>
+{% endblock %}

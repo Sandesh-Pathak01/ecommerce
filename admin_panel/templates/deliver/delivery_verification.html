@@ -1,0 +1,331 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}
+IMS
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block breadcrumbtitle %}
+Deliver Verification
+{% endblock %}
+
+{% block breadlist %}
+<li class="breadcrumb-item"><a href=""><i class="ri-home-4-line"></i></a></li>
+<li class="breadcrumb-item"><a href="">Deliver</a></li>
+<li class="breadcrumb-item active" aria-current="page"></li>
+{% endblock %}
+
+{% block content %}
+
+ <!--sucess/error message tracker-->
+ {% include 'includes/message.html' %}
+ <!--============================-->
+
+<div class="content__body">
+    <div class="card">
+		<div class="detail_head">
+			<div class="tabs_col">
+				<input type="radio" class="tab_check" id="overview" name="tabs" {% if not doc %}checked{% endif %}>
+				<label for="overview">Overview</label>
+			</div>
+			<div class="detail_btn cardHeaderFlex__btn">
+                <!-- <button type="submit" class="btn btn-md btn-primary">Export PDF <i class="ri-upload-2-line"></i> </button> -->
+                <div class="btn-group display_drop_btn">
+                    <button type="button" class="btn btn-md btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        more
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right display_dropdown">
+                        <div class="dropdown-divider mb-0"></div>
+                        <button type="button" class="btn dropdown-item" data-toggle="modal" data-target="#DeleteModal">Delete</button>
+                    </div>
+                </div>
+            </div>
+		</div>
+		
+		<div class="card-body tab_card">
+			<div class="container">
+				<div class="row">
+
+					<!--overview section =-=========== -->
+
+					<div class="col* col-12">
+						<div class="tabs" data-tab="overview">
+							<div class="row">
+								<div class="col* col-lg-3 col-md-3">
+									<div class="detail_container">
+										<input type="hidden" id="item_detail_input" value="{{record.total_quantity}}" data-available="{{record.available_quantity}}">
+										<div class="detail_group">
+											<label class="form__title">Purchase Bill </label>
+											
+										</div>
+										<div class="detail_group">
+											<div class="custom_header">
+												details
+											</div>
+											<table class="table table__center stock_detail_row">
+												<thead>
+													<tr>
+														<td>Customer</td>
+														<td>{{data.customer}}</td>
+													</tr>
+                                                    <tr>
+														<td>Order Id</td>
+														<td>{{data.order_number}}</td>
+													</tr>
+													<tr>
+														<td>Total Amount</td>
+														<td>{{data.total_price}}</td>
+													</tr>
+                                                    <tr>
+														<td>Order Date</td>
+														<td>{{data.order_date}}</td>
+													</tr>
+												</thead>
+											</table>
+										</div>
+									</div>
+								</div>
+
+								<div class="col* col-lg-9 col-md-9 border-left">
+									<div class="detail_container">
+										<form method="POST" action="{% url 'confirm_delivery' data.id %}" autocomplete="off" id="CreateForm" name="CreateForm" data-form="edit">
+											{% csrf_token %}
+											<div class="custom_header stok_edit_custom_header">
+												<label>details</label>
+												<div class="detail_action cardHeaderFlex__btn">
+													<button type="submit" class="btn btn-md btn-primary submit_btn">
+														<span class="spinner-border spinner-border-md spin" id="spinner1"> </span>
+														Approve Order
+													</button>
+												</div>
+											</div>
+											<div class="col* col-12">
+                                                <!-- Customer Details -->
+												<div class="row">
+													<div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title">order date</label>
+                                                            <input readonly type="date" value="{{data.order_date|date:'Y-m-d'}}" name="entry_date" class="form-control inputs" id="entry_date" data-require="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title" >customer</label>
+                                                            <input readonly type="text" value="{{data.customer}}" name="title" class="form-control inputs" id="title" data-require="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title">payment method</label>
+                                                            <input readonly type="text" value="{{data.payment_method}}" name="bill_number" class="form-control inputs" id="bill_number" data-require="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title">payment status</label>
+                                                            <input readonly type="supplier_name" value="{{data.payment_status}}" name="supplier_name" class="form-control inputs" id="supplier_name" data-require="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title">shipping address</label>
+                                                            <input readonly type="text" value="{{data.shipping_address.province}}" name="supplier_address" class="form-control inputs" id="supplier_address">
+                                                            <input readonly type="text" value="{{data.shipping_address.address}}" name="supplier_address" class="form-control inputs" id="supplier_address">
+                                                            <input readonly type="text" value="{{data.shipping_address.inner_address}}" name="supplier_address" class="form-control inputs" id="supplier_address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title">Customer Contact</label>
+                                                            <input readonly type="text" value="{{data.contact}}" name="supplier_contact" class="form-control inputs" id="supplier_contact" data-require="required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col* col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form__title">Email</label>
+                                                            <input readonly type="text" value="{{data.email}}" name="supplier_contact" class="form-control inputs" id="supplier_contact" data-require="required">
+                                                        </div>
+                                                    </div>
+												</div>
+
+											</div>
+                                            <div class="row">
+                                                <div class="col* col-12">
+                                                    <div class="custom_header">
+                                                        Order Items
+                                                    </div>
+                                                </div>
+
+                                                <div class="col* col-12">
+                                                    <div class="table-responsive" id="ItemCollection">
+                                                        <table class="table  table__bg table-bordered table__center " id="ItemTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>SN</th>
+                                                                    <th>item name</th>
+                                                                    <th>quantity</th>
+                                                                    <th>rate</th>
+                                                                    <th>amount</th>
+                                                                    <th>action</th>
+                                                                </tr>
+                                                            </thead>
+                                                
+                                                            <tbody>
+                                                                {% if data %}
+                                                                {% for d in data.order_items.all %}
+                                                                    <tr class="tablerow datarecord" id="itemrow{{ d.id }}">
+                                                                        <td class="snColumn">{{ forloop.counter }}</td>
+                                                                        <td>{{ d.product.name }}</td>
+                                                                        <td>
+                                                                            <div class="input-group">
+                                                                                <input type="number" value="{{ d.quantity }}" class="form-control inputs qty" name="quantity_{{ d.id }}" step=".01">
+                                                                                <div class="input-group-append">
+                                                                                    <span class="input-group-text">{{ d.product.unit }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">Rs</span>
+                                                                                </div>
+                                                                                <input type="number" value="{{ d.product.new_price }}" class="form-control inputs rate" name="rate_{{ d.id }}" step=".01">
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">Rs</span>
+                                                                                </div>
+                                                                                <input type="number" value="{{ d.total_price }}" class="form-control inputs amount" name="amount_{{ d.id }}" step=".01" readonly>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-sm bg-danger-transparent text-danger delete_data"><i class="ri-delete-bin-line"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                <tr class="no-item-row">
+                                                                    <td colspan="6"><i class="ri-file-forbid-fill mx-1"></i> No items added</td>
+                                                                </tr>
+                                                            {% endif %}
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th colspan="4">Total</th>
+                                                                    <td colspan="2">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">Rs</span>
+                                                                            </div>
+                                                                            <input type="number" value="{{data.total_price}}" name="total_amount" step=".01" class="form-control inputs" id="total_amount" autocomplete="off" readonly>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div> 
+
+			</div>
+		</div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block modal %}
+
+<!-- quantity addition popover -->
+
+<div class="modal fade" id="QuantityModal" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="footerCenterBtnsModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="footerCenterBtnsModalLabel">give quantity for "<span class="item_title"></span>"</h5>
+				<button type="button" class="close close_qty_modal" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="card formcard">
+					<form id="QuantityForm">
+						<div class="card-body">
+							<div class="form-group">
+								<label class="form__title">Enter quantity</label>
+								<div class="input-group">
+									<input type="number" value="" name="quantity" step=".01" class="form-control inputs" id="quantity" autocomplete="off">
+									<div class="input-group-append">
+										<span class="input-group-text uomtext">UOM</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-lg btn-primary sub_submit_btn" id="add_item_quantity">save</button>
+							</div>
+							<input type="hidden" id="selected_item" value="">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ====================== -->
+
+<!--delete single record of doc modal section============================-->
+<div class="modal fade" id="DeleteModal" role="dialog" aria-labelledby="DeletModal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+		<div class="modal-content">
+			<div class="text-right cross"> 
+				<button type="button" class="close close__btn" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"><i class="ri-close-line"></i></span>
+				</button>
+			</div>
+			
+			<div class="modal-body text-center modal__body--custom">
+				<div class="confirm__infos text-danger">
+					<i class="ri-information-fill"></i>
+				</div>
+				
+				<h4>Are you sure want to delete this entry</h4>
+				<p>There may be transaction related to this record. Confirm before continuing!</p>
+			</div>
+			
+			<div class="modal-footer custom">
+				
+				<div class="left-side">
+					<button type="button" class="btn text-danger" data-dismiss="modal">No</button>
+				</div>
+				<div class="divider"></div>
+				<div class="right-side">
+					<form method="POST" action="">
+						{% csrf_token %}
+						<button type="submit" class="btn text-success">Yes</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/purchase.js' %}?v={{version}}"></script>
+{% endblock %}

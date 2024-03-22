@@ -1,0 +1,389 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/font-awesome-line-awesome/css/all.min.css">
+    
+    {% block css %}
+
+    {% endblock %}
+    <title>Bag</title>
+  </head>
+  <body>
+
+  <!-- Top Nav -->
+    <header>
+      <section class="header__top">
+        <div class="header__topbg">
+          <div class="container">
+            <div class="row">
+
+              <div class="col* col-sm-6 col-lg-6 header__topleft">
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#">
+                      <i class="las la-envelope"></i>
+                      <span>Shopsandes@ecom.com</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col* col-sm-6 col-lg-6 header__topright">
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="#">
+                      <i class="lab la-facebook-f"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="lab la-twitter"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <i class="lab la-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="header__mid">
+        <div class="container">
+          <div class="row">
+            <div class="col* col-sm-3 col-md-3 col-lg-2 col-xl-2 logo__sec" >
+              <a href="#">
+                <img src="{% static 'img/logoshop.png' %}" class="img-fluid" alt="title">
+              </a>
+            </div>
+
+            <div class="col* d-none d-lg-block col-md-4 col-lg-5 col-xl-6 header__search" >
+              <form method="post" action="{% url 'search_products' %}">
+                {% csrf_token %}
+                <div class="search__desk">
+                  <input type="text" name="search" class="form-control" placeholder="Search for Product">
+                  <button type="submit" value="" name=""><i class="las la-search"></i></button>
+                </div>
+              </form>
+            </div>
+
+            <div class="col* col-sm-9 col-md-9 col-lg-5 col-xl-4 header__user">
+              <div class="header__userFlex">
+                <div class="header__call d-none d-md-block d-lg-block py-2"  style="margin-right: -25px;">
+                  <div class="header__callFlex">
+                    <i class="las la-phone-volume"></i>
+                    <div class="header__callInfos">
+                      <span>Call Us</span>
+                      <p>+977-9813354</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="header__cart py-2" style="margin-right: -16px;">
+                  <a href="{% url 'cart_display' %}">
+                    <div class="cart__col">
+                      <i class="las la-shopping-cart"></i>
+                      {% if user.is_authenticated %}
+                      <span class="item__count">{{ request.user.cart.total_items }}</span>
+                      {% endif %}
+                    </div>
+                  </a>
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="user__col py-2">
+                  
+                  <div class="user__sign">
+                    <ul class="list-unstyled">
+                      <li class="dropdown dropdown-user  dropdownUser nav-item">
+                        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                          <i class="las la-user"></i>
+                          <span class="care__title">{{request.user}}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right pb-0">
+                          <div class="dropdown__infos">
+                            <ul>
+                              <li class="dropdown-item">
+                                <a href="{% url 'account_info' %}">
+                                  <i class="las la-user"></i>
+                                  <span>My Account</span>
+                                </a>
+                              </li>
+
+                              <li class="dropdown-item">
+                                <a href="{% url 'wishlist_display' %}">
+                                  <i class="las la-heart"></i>
+                                  <span>My Wish-List</span>
+                                </a>
+                              </li>
+    
+                              <li class="dropdown-item">
+                                <a href="{% url 'trace_order' %}">
+                                  <i class="las la-map-marked-alt"></i>
+                                  <span>Track My Order</span>
+                                </a>
+                              </li>
+    
+                              <li class="dropdown-item">
+                                <a href="{% url 'signout' %}">
+                                  <i class="las la-sign-out-alt"></i>
+                                  <span>Sign Out</span>
+                                </a>
+                              </li>
+    
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    {% else %}
+                    <a href="{% url 'login_display' %}" style="display: inline-block; text-decoration: none; padding: 10px 20px; border: 1px solid black; border-radius: 5px; background-color: #f0f0f0; color: black;">
+                      <i class="las la-user" style="font-size: 18px;"></i>
+                      <span class="care__title" style="margin-left: 5px;">Sign In</span>
+                  </a>
+                  </div>
+                  
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sticky" class="header__menu">
+        <div class="xs-navBar">
+          <div class="container">
+            <div class="mobile__search">
+              <div class="outer-search-box">
+                <div class="search-toggle"><i class="las la-search"></i></div>
+                <ul class="search-box">
+                  <li>
+                    <form method="" action="">
+                      <div class="form-group">
+                        <input type="text" name="search" placeholder="Search Here" required>
+                        <button type="submit"><i class="las la-search"></i></button>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <nav class="xs-menus">
+              <div class="nav-header">
+                <div class="nav-toggle"></div>
+              </div>
+              <div class="nav-menus-wrapper">
+                <ul class="nav-menu">
+                  <li class="">
+                    <a class="nav_link" href="{% url 'home' %}"> Home</a>
+                  </li>
+
+                  <li class="">
+                    <a class="nav_link" href="{% url 'product_listing_display' %}"> Our Products</a>
+                  </li>
+
+
+                  <li class="">
+                    <a class="nav_link" href="{% url 'about_us' %}" >About Us</a>
+                  </li>
+
+                  <li class="">
+                    <a class="nav_link" href="{% url 'contact_display' %}" >Contact</a>
+                  </li>
+                  {% if request.user.is_staff %}
+                  <li class="">
+                    <a class="nav_link" href="{% url 'admin_panel_display' %}" target="_blank">Admin Panel</a>
+                  </li>
+                  {% endif %}
+
+                </ul>
+              </div>
+            </nav>
+          </div>
+        
+        </div>
+      </section>
+
+    </header>
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <div class="footer__top">
+          <div class="container">
+            <div class="row no-gutters">
+              <div class="col* col-md-4 col-lg-3 footer__list">
+                <h3>Store Information</h3>
+                <div class="contact__infos">
+                  <ul>
+                    <li>
+                      <div class="contact__icon">
+                        <i class="las la-map-marked-alt"></i>
+                      </div>
+                      <div class="contact__infos">
+                        <label>Address</label>
+                        <span>My Company, 42 Puffin Street 12345 Puffinville Lalitpur</span>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div class="contact__icon">
+                        <i class="las la-envelope-open-text"></i>
+                      </div>
+                      <div class="contact__infos">
+                        <label>Mail Us</label>
+                        <span>sales@yourcompany.com</span>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div class="contact__icon">
+                        <i class="las la-phone-volume"></i>
+                      </div>
+                      <div class="contact__infos">
+                        <label>Need Help ?</label>
+                        <span>(+1) 0123-456-789</span>
+                      </div>
+                    </li>
+  
+                  </ul>
+                </div>
+              </div>
+  
+              <div class="col* col-md-4 col-lg-2 footer__list">
+                <h3>Top Categories</h3>
+                <div class="footer__menu">
+                  <ul>
+                    <li><a href="#"> Men's Bag</a></li>
+                    <li><a href="#"> Women's Bag</a></li>
+                    <li><a href="#"> Leather Bag</a></li>
+                    <li><a href="#"> Faux Leather Bag</a></li>
+                    <li><a href="#"> Children School Bag </a></li>
+                  </ul>
+                </div>
+             
+              </div>
+  
+              <div class="col* col-md-4 col-lg-2 footer__list">
+                <h3>Best In Offer</h3>
+                <div class="footer__menu">
+                  <ul>
+                    <li><a href="#"> Men's Bag</a></li>
+                    <li><a href="#"> Women's Bag</a></li>
+                    <li><a href="#"> Leather Bag</a></li>
+                    <li><a href="#"> Faux Leather Bag</a></li>
+                    <li><a href="#"> Children School Bag </a></li>
+                  </ul>
+                </div>
+             
+              </div>
+  
+              <div class="col* col-md-4 col-lg-2 footer__list">
+                <h3>Customer Care</h3>
+                <div class="footer__menu">
+                  <ul>
+                    <li><a href="#"> Terms & Condition</a></li>
+                    <li><a href="#"> Order History</a></li>
+                    <li><a href="#"> Privacy Policy</a></li>
+                    <li><a href="#"> Delivery Information</a></li>
+                  </ul>
+                </div>
+             
+              </div>
+  
+              <div class="col* col-md-4 col-lg-3 footer__list">
+                <h3>Customer Links</h3>
+                <div class="footer__menu footer__menu--1">
+                  <ul>
+                    <li><a href="#"> Terms & Condition</a></li>
+                    <li><a href="#"> Order History</a></li>
+                    <li><a href="#"> Privacy Policy</a></li>
+                    <li><a href="#"> Delivery</a></li>
+                    <li><a href="#"> About Us</a></li>
+                    <li><a href="#"> Contact Us</a></li>
+                  </ul>
+                </div>
+             
+              </div>
+  
+            </div>
+  
+            <div class="footer__mid">
+              <div class="socialPay__flex">
+                <div class="socialPay__left">
+                  <ul>
+                    <li><label>Follow Us</label></li>
+                    <li>
+                      <a href="#">
+                        <i class="lab la-facebook-f"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="lab la-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="lab la-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="socialPay__right">
+                  <ul>
+                    <li><label>Payment</label></li>
+                    <li>
+                      <a href="#">
+                        <img style="height: 4rem;" src="{% static 'img/esewa.png' %}" alt="title">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <img src="{% static 'img/khalti.jpg' %}" alt="title">
+                      </a>
+                    </li>
+     
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          
+        </div>
+  
+        <div class="footer__bottom">
+          <div class="container">
+            <p>Copyright © 2020 Bag Store  | Delivering Happiness All Right Reserved.</p>
+          </div>
+        </div>
+      </footer>
+      <div class="go-top">
+        <i class="las la-angle-up"></i>
+      </div>
+      <!-- Optional JavaScript; choose one of the two! -->
+      <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+      <script type="text/javascript" src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    </body>
+  </html>

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>User Profile </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">User Profile</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="user__dashboard">
+        <div class="container">
+          <div class="row no-gutters">
+
+            <div class="col* col-md-4 col-lg-3 user__dashboardLeft">
+              <div class="user__sidebar sticky-top">
+                <div class="side__bar__user">
+                  <h3 class="user__dashboard__title">Account Information</h3>
+                  <ul>
+                    <li class="">
+                      <a href="{% url 'account_info' %}"><i class="las la-user"></i> <span>Personal Information</span></a>
+                    </li>
+                    <li class="active">
+                      <a href="{% url 'address_info' %}"><i class="las la-map-marked-alt"></i> <span>Address Book</span></a>
+                    </li>
+                    <li class="">
+                      <a href="{% url 'wishlist_display' %}"><i class="las la-heart"></i> <span>My WishList</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col* col-md-8 col-lg-9 user__dashboardRight">
+              <div class="dashboard__bg">
+                <h3 class="dashboard__bgTitle">Personal Information <a href="#" class="edit__btn"><i class="las la-edit"></i></a></h3>
+                <div class="p-y user__form">
+                  <div class="form-group">
+                    <div class="row no-gutters">
+                      <div class="col* col-md-5 col-lg-5">
+                        <label class="form-title">Username : </label>
+                        <input type="text" value="{{data.user}}" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row no-gutters">
+  
+
+                      <div class="col* col-md-5 col-lg-5">
+                        <label class="form-title">Email : </label>
+                        <input type="text" value="{{request.user.email}}" class="form-control" disabled placeholder="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row no-gutters">
+                      <div class="col* col-md-5 col-lg-5">
+                        <label class="form-title">Phone : </label>
+                        <input type="text" value="{{data.contact}}" class="form-control" disabled placeholder="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row no-gutters">
+                      <div class="col* col-md-5 col-lg-5">
+                        <label class="form-title">Gender : </label><strong>{{data.gender}}</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

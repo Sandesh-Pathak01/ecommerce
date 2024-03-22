@@ -1,0 +1,116 @@
+.mid__card{
+margin: 0 auto;
+}
+.login__tabs{
+  background: #fff;
+  box-shadow: 0 0 50px rgba(0,0,0,0.1);
+  // padding: 2rem 2rem 3rem;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+  .astrick{
+    color:$theme_color;
+  }
+  .login__title{
+    color:#222;
+    font-size:1.5rem;
+  }
+  .form-control{
+    height: 4rem;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    box-shadow: none;
+    padding: .5rem .75rem;
+    border: 1px solid #e6eaf3;
+    background-clip: initial;
+    background: #f4f5f7;
+  }
+  .form-group{
+    margin-bottom: 1.5rem;
+  }
+  .ckbox{
+    font-size: 1.3rem;
+  }
+  form{
+    padding: 1.5rem;
+  }
+}
+.login__head {
+  font-size: 2.2rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eaeaea;
+  font-weight: 400;
+  margin-bottom: 1.8rem;
+  background: #266cfb;
+  color: #fff;
+}
+.password__eye{
+  position: relative;
+  .field-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #f4f5f7;
+    height: 4rem;
+    display: inline-block;
+    line-height: 4rem;
+    width: 3rem;
+    text-align: center;
+    font-size:1.5rem;
+    color:#222;
+  }
+}
+.btn-1{
+  background: $theme_color;
+  color: #fff;
+  font-size: 1.4rem;
+  &:hover{
+    background: $theme_color;
+    color: #fff;
+  }
+}
+.facebook__button {
+  background: #4368af;
+  color: #fff;
+  // @include global-transition();
+  &:hover{
+    background: #143575;
+    color:#fff;
+  }
+}
+.google__button {
+  background: #e45547;
+  color: #fff;
+  // @include global-transition();
+  &:hover{
+    background: #bd2b1d;
+    color:#fff;
+  }
+}
+.login__social___buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.social__account__button{
+  border: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin-right: .5rem;
+  width: 50%;
+  display: inline-block;
+  &:last-child{
+    margin-right: 0;
+  }
+}
+.login__wrap{
+  margin-top:5rem;
+}
+.login__flex{
+  display: flex;
+  flex-direction: row;
+  .loginRight__flex{
+    margin-left: auto;
+  }
+}
+.custom__control.custom-control-inline input[type="checkbox"]+label:before{
+  top:5px
+}

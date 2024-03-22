@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<main>
+
+    <section class="main__content">
+      <div class="container">
+        <div class="order-confirm">
+          <div class="confirm-modal">
+            <img src="{% static 'img/confirm.png' %}" class="img-fluid" alt="title">
+            <h3>Thank you for your purchased</h3>
+            <p>Your order number is <a href="#"><span class="badge badge-primary">{% for message in messages %}{{ message }} {% endfor %}</span></a></p>
+  
+            <div class="shop-btn">
+              <a href="{% url 'product_listing_display' %}" class="btn btn-shop">Continue Shopping</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

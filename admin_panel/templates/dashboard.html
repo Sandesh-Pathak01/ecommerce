@@ -1,0 +1,407 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}
+IMS
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block breadcrumbtitle %}
+IMS Dashboard
+{% endblock %}
+
+{% block breadlist %}
+<li class="breadcrumb-item"><a href=""><i class="ri-home-4-line"></i></a></li>
+<!-- <li class="breadcrumb-item"><a href="#"></a></li> -->
+<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+{% endblock %}
+
+{% block content %}
+
+<div class="content__body">
+    <div class="main__home">
+        <div class="row no-gutters">
+            <div class="col* col-md-6 col-lg-3 dashboard__stats--2 dashboard__hover">
+                <div class="dashboard__list--sec">
+                    <a href="#">
+                        <div class="dashboard__box dashboard__item dashboard--h">
+                            <div class="dashboard__infos">
+                                <span class="sub__title">total order</span> 
+                                <h5 class="dashboard__count">100</h5>
+                            </div>
+                            
+                            <div class="dashboard__icon icon__c-1 pos__abs">
+                                <i class="ri-shopping-basket-line"></i>
+                            </div>
+                            
+                            <div class="chart__bar">
+                                <div id="chart-3"></div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="dashboard__list--sec">
+                    <a href="#">
+                        <div class="dashboard__box dashboard__item dashboard--h">
+                            <div class="dashboard__infos">
+                                <span class="sub__title">total user</span> 
+                                <h5 class="dashboard__count">1200</h5>
+                            </div>
+                            
+                            <div class="dashboard__icon icon__c-2 pos__abs">
+                                <i class="ri-user-line"></i>
+                            </div>
+                            
+                            <div class="chart__bar">
+                                <div id="chart-4"></div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col* col-md-6 col-lg-3 dashboard__stats--2 dashboard__hover">
+                <div class="dashboard__list--sec">
+                    <a href="#">
+                        <div class="dashboard__box dashboard__item dashboard--h">
+                            <div class="dashboard__infos">
+                                <span class="sub__title">total order</span> 
+                                <h5 class="dashboard__count">100</h5>
+                            </div>
+                            
+                            <div class="dashboard__icon icon__c-3 pos__abs">
+                                <i class="ri-shopping-basket-line"></i>
+                            </div>
+                            
+                            <div class="chart__bar">
+                                <div id="chart-2"></div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="dashboard__list--sec">
+                    <a href="#">
+                        <div class="dashboard__box dashboard__item dashboard--h">
+                            <div class="dashboard__infos">
+                                <span class="sub__title">total user</span> 
+                                <h5 class="dashboard__count">1200</h5>
+                            </div>
+                            
+                            <div class="dashboard__icon icon__c-4 pos__abs">
+                                <i class="ri-user-line"></i>
+                            </div>
+                            
+                            <div class="chart__bar">
+                                <div id="chart-1"></div>
+                            </div>
+                            
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col* col-md-6 col-lg-6 dashboard__chart">
+                <div class="card">
+                    <div class="card-header cardHeaderFlex">
+                        <h3 class="cardHeaderFlex__title mb-0">Task Status</h3>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="d-flex justify-content-around mt-4">
+                            <div class="price-week-box mr-5">
+                                <span>Active Users</span>
+                                <h2><span class="counter">380</span></h2>
+                            </div>
+                            <div class="price-week-box">
+                                <span>User retention</span>
+                                <h2><span class="counter">52.55</span></h2>
+                            </div>
+                        </div>
+                        <div id="chart-19"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+    
+    <div class="row no-gutters">
+        
+        <div class="col* col-md-4 col-lg-6">
+            <div class="card">
+                <div class="card-header cardHeaderFlex">
+                    <h3 class="cardHeaderFlex__title mb-0">Project Performance</h3>
+                </div>
+                
+                <div class="card-body">
+                    <div class="top__infos">
+                        <div class="d-sm-flex">
+                            <div class="pr-4 border-right">
+                                <p class="mb-1">Net Revenue</p>
+                                <h5 class="mb-0">
+                                    <span class="d-block font-weight-bold mb-2">$50,525</span>
+                                    <span class="text-primary">+8.71%</span>
+                                </h5>
+                            </div>
+                            
+                            <div class="px-4 border-right">
+                                <p class="mb-1">Net Selling</p>
+                                <h5 class="mb-0">
+                                    <span class="d-block font-weight-bold mb-2">$50,525</span>
+                                    <span class="text-danger">+8.71%</span>
+                                </h5>
+                            </div>
+                            
+                            <div class="px-4">
+                                <p class="mb-1">Net Selling</p>
+                                <h5 class="mb-0">
+                                    <span class="d-block font-weight-bold mb-2">$50,525</span>
+                                    <span class="text-success">+8.71%</span>
+                                </h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="chart__h">
+                        <div id="chart-41"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col* col-md-4 col-lg-3">
+            <div class="product__box product__box--1">
+                <div class="icon">
+                    <i class="ri-shopping-bag-3-line"></i>
+                </div>
+                <span>New Products</span>
+                <label class="sub-text d-block font-weight-bold mb-0">1.3K</label>
+            </div>
+            
+            <div class="product__box product__box--2">
+                <div class="icon">
+                    <i class="ri-user-3-line"></i>
+                </div>
+                <span>New User</span>
+                <label class="sub-text d-block font-weight-bold mb-0">1.3K</label>
+            </div>
+            
+            <div class="product__box product__box--3">
+                <div class="icon">
+                    <i class="ri-folder-shield-line"></i>
+                </div>
+                <span>Project Status</span>
+                <label class="sub-text d-block font-weight-bold mb-0">1.3K</label>
+            </div>
+            
+        </div>
+        
+        <div class="col* col-md-4 col-lg-3">
+            <div class="card">
+                <div class="card-header cardHeaderFlex">
+                    <h3 class="cardHeaderFlex__title mb-0">Project Performance</h3>
+                    
+                </div>
+                
+                <div class="card-body">
+                    <div class="h-v2">
+                        <div id="Dash1DonetChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="card">
+        <div class="card-header cardHeaderFlex">
+            <h3 class="cardHeaderFlex__title mb-0">Project Overview</h3>
+            <div class="cardHeaderFlex__btn">
+                <button type="submit" class="btn btn-md btn-danger">Trash <i class="ri-delete-bin-line"></i> </button>
+                <button type="submit" class="btn btn-md btn-info">Create <i class="ri-edit-box-line"></i> </button>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table__center text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Title</th>
+                            <th>Backend</th>
+                            <th>Team: </th>
+                            <th>Status</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Think about business content?</td>
+                            <td>Python</td>
+                            <td>
+                                <div class="table__avatar avatar__mr">
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-10.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-11.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                </div>
+                            </td>
+                            <td><span class="btn btn-sm btn-primary">Completed</span></td>
+                            <td>
+                                <div class="table__btn">
+                                    <a href="#" class="btn btn-sm  bg-primary-transparent text-primary">
+                                        <i class="ri-edit-box-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-info-transparent text-info">
+                                        <i class="ri-eye-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-danger-transparent text-danger">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-success-transparent text-success">
+                                        <i class="ri-printer-line"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>Aenean eu pharetra arcu, vitae elementum sem. Sed non</td>
+                            <td>Laravel</td>
+                            <td>
+                                <div class="table__avatar avatar__mr">
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-12.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-13.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                </div>
+                            </td>
+                            <td><span class="btn btn-sm btn-danger">Warning</span></td>
+                            <td>
+                                <div class="table__btn">
+                                    <a href="#" class="btn btn-sm  bg-primary-transparent text-primary">
+                                        <i class="ri-edit-box-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-info-transparent text-info">
+                                        <i class="ri-eye-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-danger-transparent text-danger">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-success-transparent text-success">
+                                        <i class="ri-printer-line"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>3</td>
+                            <td>Think about business content?</td>
+                            <td>Python</td>
+                            <td>
+                                <div class="table__avatar avatar__mr">
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-14.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-15.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                </div>
+                            </td>
+                            <td><span class="btn btn-sm btn-warning">Pending</span></td>
+                            <td>
+                                <div class="table__btn">
+                                    <a href="#" class="btn btn-sm  bg-primary-transparent text-primary">
+                                        <i class="ri-edit-box-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-info-transparent text-info">
+                                        <i class="ri-eye-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-danger-transparent text-danger">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-success-transparent text-success">
+                                        <i class="ri-printer-line"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>4</td>
+                            <td>Aenean eu pharetra arcu, vitae elementum sem. Sed non</td>
+                            <td>Laravel</td>
+                            <td>
+                                <div class="table__avatar avatar__mr">
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-16.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                    <figure class="avatar avatar-sm">
+                                        <img src="{% static 'img/images/avatar-s-17.jpg' %}" class="rounded-circle" alt="...">
+                                    </figure>
+                                </div>
+                            </td>
+                            <td><span class="btn btn-sm btn-success">Success</span></td>
+                            
+                            <td>
+                                <div class="table__btn">
+                                    <a href="#" class="btn btn-sm  bg-primary-transparent text-primary">
+                                        <i class="ri-edit-box-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-info-transparent text-info">
+                                        <i class="ri-eye-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-danger-transparent text-danger">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm  bg-success-transparent text-success">
+                                        <i class="ri-printer-line"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/js_plug/apex/apexcharts.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js_plug/apex/chart-custom.js' %}"></script>
+{% endblock %}

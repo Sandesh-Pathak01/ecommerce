@@ -1,0 +1,847 @@
+ /* action master banner css */
+ .action_master_banner{
+    display: none;
+ }
+.action_master_banner .btn{
+    font-size: 1.2rem;
+}
+.action_master_banner .btn .badge{
+    font-size: 1.1rem;
+}
+.master_record_count{
+    border: none;
+}
+.ckbox{
+    cursor: pointer;
+}
+
+.dashboard__box{
+    cursor: pointer;
+    height: 150px;
+    margin-bottom: 5px;
+}
+
+.modal {
+    overflow-y:auto;
+  }
+
+ /* ================================== */
+ .astric{
+    color:red;
+ }
+button,
+.btn,
+.badge{
+    text-transform: capitalize;
+}
+table th,
+table td{
+    text-transform: capitalize;
+}
+table tr.trow{
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
+.modal h5{
+    text-transform: capitalize;
+}
+.form__title{
+    text-transform: capitalize;
+}
+.menu-title,
+.menu-item{
+    text-transform: capitalize;
+}
+.formcard{
+    background: none;
+    box-shadow: none;
+}
+.left-side button,
+.right-side button{
+    width:100%;
+}
+.rightbtn{
+    text-align: right;
+}
+.scrollaction{
+    text-align: right;
+}
+.custom__control{
+    margin-bottom: 10px;
+}
+.stockbtnpart{
+    text-align:center;
+    padding: 10px 0px;
+}
+#stockbtn{
+    padding: 5px 40px;
+}
+.hidefield{
+    display: none;
+}
+
+.stockdistab tbody tr button{
+    margin-top: 1px;
+}
+
+#RowModal .modal-body{
+    padding: 20px 0px;
+}
+
+.inputs{
+    /* background: none; */
+}
+/*--stock detail css--*/
+
+.detail_container{
+    display: block;
+    /* padding: 10px; */
+}
+
+.detail_group{
+    width:100%;
+    margin-bottom: 20px;
+    display: block;
+    /* padding: 10px; */
+}
+.detail_group .custom_header{
+    padding: 8px 5px;
+    font-weight: 430;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.detail_group .form__title{
+    width:100%;
+    margin-bottom:4px;
+    font-size: 18px;
+}
+.detail_group .form__subtitle{
+    width:100%;
+    margin-bottom:4px;
+    font-size: 14px;
+}
+.detail_text{
+    font-size: 14px;
+    width:100%;
+    display: block;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+.stock_detail_row td{
+    font-size: 14px;
+}
+.detail_content{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding: 5px 5px;
+}
+.detail_content .switch {
+    height: 20px;
+    width: 40px;
+}
+
+.detail_content .slider:before {
+    height: 15px;
+    width: 15px;
+}
+
+.detail_view_btn{
+    padding: 3px 8px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.stok_edit_custom_header{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+.stok_edit_custom_header label{
+    margin: auto 0px;
+}
+
+.under_progress{
+    text-align:center;
+}
+.progress_png{
+    width: 70%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* form submit btn====================*/
+
+.submit_btn{
+    padding: 7px 20px;
+    font-size: 14px;
+}
+
+/*==============================*/
+
+/*===spinner==========================*/
+.show_spin{
+    display: inline-block !important;
+}
+.spin{
+    margin-right: 8px;
+    display: none;
+}
+.small_spin{
+    position: relative;
+    top:-2px;
+    display: none;
+}
+
+/*===============================*/
+
+/* no record======================*/
+
+.no-record{
+    text-align:center;
+    padding: 30px 0px;
+}
+.notfound-img{
+    height:100px;
+    margin-bottom: 10px;
+}
+
+/*=============================*/
+
+/* email data ======================*/
+
+.emaildata{
+    text-transform: lowercase;
+}
+
+/*=============================*/
+
+/* fields hide ======================*/
+
+.no-field{
+    display: none;
+}
+
+/*=============================*/
+
+/* stock item entry > change to nepali date */
+
+.datechanger{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 5px;
+}
+.nepalidatelabel{
+    text-transform: capitalize;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+/* .datechanger label{
+    float:left;
+} */
+
+/*==================*/
+
+/* ========= slider checkbox===============*/
+
+.switch {
+    display: inline-block;
+    height: 25px;
+    position: relative;
+    width: 45px;
+  }
+  
+  .switch input {
+    display:none;
+  }
+  
+  .slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    background-color: #fff;
+    bottom: 3px;
+    content: "";
+    height: 20px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 20px;
+  }
+  
+  input:checked + .slider {
+    background-color: #0275d8;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+/*===============================*/
+
+/* == placeholder in date input ====== */
+
+input[type=date]:-webkit-datetime-edit {
+    color: transparent;
+}
+
+/*====================*/
+
+/* == large entry card form ====== */
+
+.largeentry_card{
+    padding-bottom: 100px;
+}
+
+.register_card{
+    padding-bottom: 50px;
+}
+
+/*====================*/
+
+/* == nepali date hide ====== */
+
+.nep_dateinput{
+    display:none;
+}
+
+/*====================*/
+
+
+/* not show increement and decreement arrows in input type=number =======================*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/*============================================================*/
+
+/* input group text==================================================== */
+
+.input-group-text{
+    text-transform: capitalize;
+}
+
+/* ==========================================*/
+
+/* breadcrumb title==================================================== */
+
+.breadcrumb-item{
+    text-transform: capitalize;
+}
+
+/* ==========================================*/
+
+/* select2 error class ======================================*/
+
+.invalid-select{
+    border-color: red !important;
+}
+
+/*=======================================*/
+
+
+/* stock addition css ===================================*/
+
+.custom_header{
+    background: #eee;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 10px;
+    margin: 0px 0px 20px 0px;
+    font-weight: 500;
+}
+
+.detail_custom_header{
+    background: #eee;
+    text-transform: capitalize;
+    font-size: 14px;
+    padding: 10px;
+    margin: 20px 0px 10px 0px;
+    font-weight: 500;
+}
+
+.no-item-row{
+    text-align: center;
+    font-weight: 420;
+    font-size: 14px;
+}
+
+.help-text{
+    float:left;
+    width:100%;
+    font-size:11px;
+    color: green;
+    padding: 5px;
+}
+
+.view_data,
+.delete_data,
+.batch_delete_data,
+.serial_delete_data,
+.life_delete_data,
+.price_delete_data{
+    margin-top: 1px;
+}
+
+
+.no-cursor{
+    cursor: default;
+}
+
+.sub_submit_btn{
+    padding: 4px 10px;
+    font-size: 13px;
+}
+#sub_spinner1,
+#sub_spinner2,
+#sub_spinner3,
+#sub_spinner4{
+    width:15px;
+    height: 15px;
+    margin-right: 4px;
+    display: none;
+}
+
+#batch_select_group,
+#life_batch_select_group,
+#price_batch_select_group,
+#exist_batch_select_div,
+.deduct_batch_select_group{
+    display: none;
+}
+
+#DetailModal .table{
+    font-size: 13px;
+}
+
+#resuable_html{
+    display: none;
+}
+
+.input_div{
+    padding-top: 5px;
+}
+
+.div_error{
+    border: 1px solid red !important;
+}
+
+.batch_none,
+.serial_none{
+    display:none;
+}
+
+.div_warning{
+    background: rgb(255, 129, 129, .6);
+}
+
+/*= ======================================== =*/
+
+
+/* === tabs css ===============================*/
+.tabs_col{
+    background: #e3e3e3;
+    /* border-bottom: 1px solid #ccc; */
+}
+.tabs_col input[type="radio"] {
+    display: none;
+}
+.tabs_col label {
+    padding: 20px;
+    background: #e3e3e3;
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+    color: #008ECC;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.tabs_col label:hover{
+    background-color: #ddd;
+}
+.tabs{
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    order: 1;
+    display: none;
+}
+
+/* .tabs_col input[type='radio']:checked + label + .tab {
+    display: block;
+} */
+.is_shown{
+    display: inline-block;
+}
+
+.tabs_col input[type="radio"]:checked + label {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom-color: transparent;
+}
+.tabs_col input[type="radio"]:checked .tabs_col{
+    outline: none !important;
+}
+
+.tab_card{
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.detail_head{
+    background: #e3e3e3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.detail_btn{
+    margin: auto 15px;
+}
+
+.detail_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+.detail_header .form-group,
+#DetailForm .form-group{
+    margin-bottom: 0px; 
+}
+.no_batch_serial_div{
+    display: none;
+}
+.detail_down_btn{
+    text-align: right;
+}
+.detail_down_btn .btn{
+    font-size:1.3rem;
+}
+
+/* =====================================*/
+
+/* files dropzone css =================== */
+.filename{
+    font-size:14px;
+}
+.hidden_files{
+    display: none;
+}
+#fileAddedTable{
+    display: none;
+}
+
+/* =============================== */
+
+/* accordion css ============ */
+
+.accordion-header a{
+    text-transform: capitalize;
+}
+
+/* ============================== */
+
+/* task popover css =================== */
+.taskleft{
+    height: 500px;
+    overflow-y: scroll;
+}
+#TaskModal .taskformrow .form-group{
+    margin-bottom: 5px;
+}
+.display_flex_between{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding: 5px 5px;
+}
+#TaskModal .img-circle{
+    width:12%;
+}
+#TaskModal .accordion{
+    margin-top: 10px;
+}
+#TaskModal .accordion .media h5{
+    font-size: 1.5rem;
+}
+#TaskModal .accordion .media p{
+    font-size: 1.3rem;
+}
+#TaskModal .check span{
+    border:1px solid transparent;
+    font-size: 1.1rem;
+}
+
+/* =============================== */
+
+/* pagination css  */
+
+.default__pagination{
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+
+/* ====================================== */
+
+/* dropdown display css  */
+
+.dropdown-menu{
+    overflow: hidden;
+}
+
+.display_dropdown a{
+    font-size: 1.3rem;
+    text-transform: capitalize !important;
+}
+.display_dropdown .btn{
+    font-size: 1.3rem;
+    text-transform: capitalize !important;
+}
+
+/* ====================================== */
+
+ /* base modal addition buttons =========== */
+.add_new_btn_sel{
+    margin-top:2px;
+    font-size:1.1rem;
+}
+.add_new_btn_sel i{
+    font-size: 1.1rem;
+}
+
+/* ================================== */
+
+/* parent category css ============ */
+
+.parent_category{
+    display: none;
+}
+
+/* ================================== */
+
+/* invoice table css ================== */
+
+#InvoiceTable .input-group,
+#ReturnInvoiceTable .input-group{
+    min-width: 130px;
+}
+
+.inv_badge .btn{
+    text-transform: uppercase;
+    position: relative;
+}
+
+#dismiss_invoice{
+    cursor: pointer;
+    position:absolute;
+    top:-10px;
+    right: -5;
+    border-radius: 50%;
+}
+
+.payment_term{
+    display: none;
+}
+
+/* ============================= */
+
+/* import / export css ============ */
+
+.import_part,
+.export_part{
+    display: none;
+}
+
+/* ======================== */
+
+
+/* ===== permission list-group css =========*/
+
+.perm-group{
+    display: flex;
+}
+.perm-group .grp-spin{
+    margin: auto 0px;
+}
+
+.permission_list{
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    text-transform: capitalize;
+}
+.action_list{
+    display: flex;
+    position: relative;
+    text-transform: capitalize;
+}
+
+.permission_list:hover,
+.action_list:hover{
+    background: #eee;
+}
+.perm-spin{
+    display: none;
+}
+.permission_list .perm-spin{
+    position: absolute;
+    right: 0;
+}
+.action_list .action_check_label{
+    position: absolute;
+    right: 0;
+}
+
+/* permission action checkbox  */
+.action_check_label {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    cursor: pointer;
+  }
+
+.action_checkbox[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    font: inherit;
+    color: #008ECC;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.1em solid #008ECC;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+  }
+
+  .action_check_label + .action_check_label {
+    margin-top: 1em;
+  }
+  
+  .action_checkbox[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #008ECC;
+    background-color: #008ECC;
+  }
+  
+  .action_checkbox[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  .action_checkbox[type="checkbox"]:disabled {
+    color: #ddd;
+    border-color: #ddd;
+    cursor: not-allowed;
+  }
+
+  /* ======= user profile pic addition ============= */
+
+  .profile_add{
+    text-align: center;
+  }
+  .profile_add_pic{
+    height: 150px !important;
+    width:150px !important;
+  }
+  .profile_file[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #2868f2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  .profile_file[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+  }
+  
+
+  /* ==================== */
+
+
+  /* module active css */
+
+  .module_active{
+    position: relative;
+    /* border-bottom: 1px solid #449ab5; */
+    background-color: #449ab5;
+    color: #fff;
+  }
+  .module_active:after {
+    content:'';
+    position: absolute;
+    bottom:-5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-top: 5px solid #449ab5;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+  /* ============================ */
+
+  /* stock ledger filteration ============== */
+
+  .filter_box{
+    display: none;
+  }
+
+  .report_heading{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    /* padding: 5px 5px; */
+  }
+
+  .opening_cr_dr{
+    width:60px;
+}

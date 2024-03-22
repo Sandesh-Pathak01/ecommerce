@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Contact Us </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">Contact Us</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="contact__detail">
+        <div class="container">
+          <div class="row">
+            <div class="col* col-md-7 col-lg-7 contactLeft">
+              <h1 class="titleHead">Get in Touch</h1>
+              <p>sed do eiusmod tempor dolor sit ame tse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi</p>
+
+              <div class="contactDetailsBox">
+                <ul>
+                  <li>
+                    <div class="fotContactIcon">
+                      <i class="las la-map-marked-alt"></i>
+                    </div>
+
+                    <div class="fotContactInfos">
+                      <span>find us</span>
+                      <p>Eiusmod tempor dolor sit </p>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="fotContactIcon">
+                      <i class="las la-phone-volume"></i>
+                    </div>
+
+                    <div class="fotContactInfos">
+                      <span>call us</span>
+                      <p>Phone: +9845-789-123</p>
+                      <p>Mobile: +9845-789-123</p>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="fotContactIcon">
+                      <i class="las la-envelope-open-text"></i>
+                    </div>
+
+                    <div class="fotContactInfos">
+                      <span>mail us</span>
+                      <p><a href="#">bag@info.com</a></p>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+
+
+            </div>
+
+            <div class="col* col-md-5 col-lg-5 contactRight">
+              <div class="contactForm">
+                <h1 class="titleHead">Leave us Message</h1>
+                <form action="https://formspree.io/f/xdoqgpqa" method="post">
+                    {% csrf_token %}
+                  <div class="row">
+                    <div class="col* col-md-12 col-lg-6 contactList">
+                      <div class="form-group">
+                        <input type="text" required name="name" class="form-control" placeholder="Full Name">
+                      </div>
+                    </div>
+
+                    <div class="col* col-md-12 col-lg-6 contactList">
+                      <div class="form-group">
+                        <input type="text" required name="email" class="form-control" placeholder="Email">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col* col-md-12 col-lg-12 contactList">
+                      <div class="form-group">
+                        <input type="text" name="_subject" class="form-control" placeholder="Subject">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col* col-md-12 col-lg-12 contactList">
+                      <div class="form-group">
+                        <textarea name="message" required cols="5" rows="5" class="form-control" placeholder="Message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="submitBtns">
+                    <button type="submit" value="Send" name="" class="btn">Send</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

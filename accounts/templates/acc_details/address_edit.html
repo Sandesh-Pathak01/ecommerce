@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+
+{% include 'includes/ecomsg.html' %}
+
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Address </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="#">Home</a></li>
+        <li class="breadcrumb-item active">Address</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="user__dashboard">
+        <div class="container">
+          <div class="row no-gutters">
+
+            <div class="col* col-md-4 col-lg-3 user__dashboardLeft">
+              <div class="user__sidebar sticky-top">
+                <div class="side__bar__user">
+                  <h3 class="user__dashboard__title">Account Information</h3>
+                  <ul>
+                    <li class="">
+                      <a href="{% url 'account_info' %}"><i class="las la-user"></i> <span>Personal Information</span></a>
+                    </li>
+                    <li class="active">
+                      <a href="{% url 'address_info' %}"><i class="las la-map-marked-alt"></i> <span>Address Book</span></a>
+                    </li>
+                    <li class="">
+                      <a href="{% url 'wishlist_display' %}"><i class="las la-heart"></i> <span>My WishList</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col* col-md-8 col-lg-9 user__dashboardRight">
+              <div class="dashboard__bg">
+                <h3 class="dashboard__bgTitle">Address Book</h3>
+                <div class="p-y user__form">
+                  <div class="address__main">
+                    <a href="#" class="address__book">
+                        <i class="las la-plus"></i> Click Here to edit your address
+                      </a>
+                  </div>
+                  <form action="{% url 'edit_address' data.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="address__block filterFormDisplay">
+                      <div class="border__bg">
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Your Name : </label>
+                            </div>
+                            <div class="col* col-md-3 col-lg-3">
+                              <input type="text" value="{{data.fname}}" class="form-control" name="fname" placeholder="First Name" required>
+                            </div>
+
+                            <div class="col* col-md-3 col-lg-3">
+                              <input type="text" value="{{data.lname}}" class="form-control" name="lname" placeholder="Last Name" required>
+                            </div>
+                          </div>
+                        </div>
+  
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>State/Province : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                                <select name="province" id="province" class="select_2 form-control" required>
+                                    <option></option>
+                                    <option value="Kathmandu" {% if data.province == "Kathmandu" %} selected {% endif %}>Kathmandu</option>
+                                    <option value="Lalitpur" {% if data.province == "Lalitpur" %} selected {% endif %}>Lalitpur</option>
+                                    <option value="Bhaktapur" {% if data.province == "Bhaktapur" %} selected {% endif %}>Bhaktapur</option>
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Address : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <input type="text" name="address" value="{{data.address}}" required class="form-control" placeholder="Address">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Inner Address : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <input type="text" value="{{data.inner_address}}" name="inner_address" class="form-control" placeholder="Example: Near this building..">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Phone : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <input type="text" name="dlvr_contact" value="{{data.dlvr_contact}}" class="form-control" placeholder="Phone">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="defaultAddress" name="defaultAddress">
+                            <label class="form-check-label" for="defaultAddress">
+                              Set as default Address
+                            </label>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group form__btn">
+                          <button value="" class="btn btn-secondary">Cancel</button>
+                          <button type="submit" value="" class="btn btn-1">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

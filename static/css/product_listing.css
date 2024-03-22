@@ -1,0 +1,22 @@
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Style for the custom bullet */
+.custom-checkbox {
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 5px; /* Adjust as needed */
+}
+
+.custom-checkbox label::before {
+    content: '\2022'; /* Bullet character */
+    color: #000; /* Bullet color */
+    font-size: 12px; /* Bullet size */
+    margin-right: 5px; /* Space between bullet and label */
+}
+
+/* Style for checked checkboxes */
+.custom-checkbox input[type="checkbox"]:checked + label::before {
+    content: '\2713'; /* Checkmark character */
+}

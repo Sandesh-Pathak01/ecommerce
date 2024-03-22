@@ -1,0 +1,183 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}
+IMS
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block breadcrumbtitle %}
+Product Managment
+{% endblock %}
+
+{% block breadlist %}
+<li class="breadcrumb-item"><a href="{% url 'admin_panel_display' %}"><i class="ri-home-4-line"></i></a></li>
+<li class="breadcrumb-item"><a href="{% url 'product_display' %}">Products</a></li>
+<li class="breadcrumb-item active" aria-current="page">Add</li>
+{% endblock %}
+
+{% block content %}
+
+ <!--sucess/error message tracker-->
+ {% include 'includes/message.html' %}
+ <!--============================-->
+
+<div class="content__body">
+    <div class="card register_card">
+        <form method="POST" action="{% url 'add_product' %}" id="CreateForm" name="CreateForm" autocomplete="off" enctype="multipart/form-data" data-form="create">
+            {% csrf_token %}
+            <div class="card-header cardHeaderFlex">
+                <h3 class="cardHeaderFlex__title mb-0"> Add Product</h3>
+                <div class="cardHeaderFlex__btn">
+                    <button type="submit" class="btn btn-lg btn-primary submit_btn" id="test">
+                        <span class="spinner-border spinner-border-md spin" id="spinner1"></span>
+                        save 
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col* col-lg-8 col-md-8">
+                            <div class="row">
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Name</label>
+                                        <input type="text" value="" name="name" class="form-control inputs" id="name" placeholder="Enter name" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Description</label>
+                                        <textarea name="description" class="form-control inputs" id="description" placeholder="Enter description" required></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Image 1</label>
+                                        <input type="file" name="image" class="form-control-file inputs" id="image" accept="image/*" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title">Image 2</label>
+                                        <input type="file" name="image2" class="form-control-file inputs" id="image2" accept="image/*">
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title">Image 3</label>
+                                        <input type="file" name="image3" class="form-control-file inputs" id="image3" accept="image/*">
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Availability</label>
+                                        <select name="availability" class="form-control inputs" id="availability" required>
+                                            <option value="available">Available</option>
+                                            <option value="not_available">Out of Stock</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Price</label>
+                                        <input type="number" value="" name="price" class="form-control inputs" id="price" placeholder="Enter price" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title">Discount</label>
+                                        <input type="number" value="" name="discount" class="form-control inputs" id="discount" placeholder="Enter discount">
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Refundable</label>
+                                        <select name="refundable" class="form-control inputs" id="refundable" required>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Type</label>
+                                        <select name="type" class="form-control inputs" id="type" required>
+                                            <option value="backpack">Backpack</option>
+                                            <option value="t-shirt">T-Shirt</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Gender</label>
+                                        <select name="gender" class="form-control inputs" id="gender" required>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Width</label>
+                                        <input type="number" value="" name="width" class="form-control inputs" id="width" placeholder="Enter width" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Height</label>
+                                        <input type="number" value="" name="height" class="form-control inputs" id="height" placeholder="Enter height" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Color</label>
+                                        <input type="text" value="" name="color" class="form-control inputs" id="color" placeholder="Enter color" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col col-lg-4 col-md-4">
+                                    <div class="form-group">
+                                        <label class="form__title" data-require="required">Quantity</label>
+                                        <input type="number" value="" name="quantity" class="form-control inputs" id="quantity" placeholder="Enter quantity" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col* col-lg-4 col-md-4 border-left">
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/stock_entry.js' %}?v={{version}}"></script>
+{% endblock %}

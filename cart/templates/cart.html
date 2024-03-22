@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Cart </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">Cart</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="cart__detail">
+        <div class="container">
+          <form action="{% url 'checkout_display' %}" method="post">
+            {% csrf_token %}
+            <div class="row no-gutters">
+              <div class="col* col-md-7 col-lg-8 col__left">
+                <div class="card__form card__form--bg" >
+                  <h4 class="card__title">Cart </h4>
+                  <div class="table-responsive custom__table">
+                    {% if data %}
+                    <table class=" shop-table cart">
+                      <thead>
+                        <tr>
+                          <th  class="product-name">Product</th>
+                          <th class="product-desc" style="width: 220px;">Description</th>
+                          <th class="product-price">Price</th>
+                          <th class="product-quantity">Qty</th>
+                          <th class="product-total">Total</th>
+                          <th class="product-remove">Action</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                       
+                        {% for d in data %}
+                        <tr>
+                          <td class="product-thumbnail"><img src="{{d.product.image.url}}" alt="title"></td>
+              
+                          <td class="product-name">
+                            <a href="#">{{d.product.name}}</a>
+                            <span class="text-danger d-block">{{d.product.availabilty}}</span>
+                          </td>
+
+                          <td class="price-table">Rs {{ d.product.new_price }}</td>
+
+                          <td>
+                              <input id="quantityInput" class="form-control quantity-input" 
+                                     type="number"
+                                     readonly 
+                                     min="0" 
+                                     max="10"
+                                     name="quantity" 
+                                     value="{{d.quantity}}" 
+                                     data-price="{{ d.product.new_price }}">
+                          </td>
+                          <td class="price-table total-amount">Rs {{ d.total_price }}</td>
+                          <td class="product-remove">
+                            <!-- <a href="#" class="btn btn-sm btn-info"><i class="las la-edit"></i></a> -->
+                            <a href="{% url 'cart_item_delete' d.id %}" class="btn btn-sm btn-danger"><i class="las la-trash"></i></a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                    {% else %}
+                    <img style="height: 50rem; width: 72rem;" src="{% static 'img/empty_cart.png' %}" alt="">
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="col* col-md-5 col-lg-4 col__right">
+                <div class="sticky-top sidebar__bg">
+                  <div class="side__box">
+                    <h5>Order Summary </h5>
+                    <ul>
+                      <li>
+                        <span class="summary__left">Subtotal ({{ total_quantity }} Items)</span>
+                        <span class="summary__price">Rs. {{ total_price }}</span>
+                      </li>
+                      <li>
+                        <span class="summary__left">Delivery Fee</span>
+                        <span class="summary__price">FREE!!</span>
+                      </li>
+                    </ul>
+
+                    <div class="cart__total cart__totalFlex">
+                      <span class="cart__totalTitle">Total Amount</span>
+                      <div class="right__cartAmt">
+                        <span class="cart__totalAmt"><small>NPR</small> {{ total_price }}</span>
+                        <span class="global__color">VAT Included</span>
+                      </div>
+                      
+                    </div>
+                    <button onclick="window.location.href='checkout.html';" class="btn btn-color btn-block btn-md" type="submit">Proceed To Checkout</button> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.quantity-input').on('input', function() {
+            var quantity = parseInt($(this).val());
+            var price = parseFloat($(this).data('price'));
+            var totalAmount = quantity * price;
+            $(this).closest('tr').find('.total-amount').text('Rs ' + totalAmount.toFixed(2));
+        });
+    });
+</script>
+{% endblock %}

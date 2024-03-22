@@ -1,0 +1,30 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/eco_msg.css' %}">
+{% if messages %}
+{% for message in messages %}
+<div class="message-box" id="messageBox">
+    <div class="message-content">
+        <span class="close" onclick="closeMessageBox()">&times;</span>
+        <p>{{ message }}</p>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+<script>
+    // Function to close the message box
+function closeMessageBox() {
+    document.getElementById("messageBox").style.display = "none";
+}
+
+// Function to show the message box and automatically close it after 3 seconds
+function showMessage() {
+    var messageBox = document.getElementById("messageBox");
+    messageBox.style.display = "block";
+    setTimeout(function() {
+        messageBox.style.display = "none";
+    }, 3000); // Adjust the time (in milliseconds) as needed
+}
+
+// Call the showMessage function to display the message box
+showMessage();
+</script>

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'includes/ecomsg.html' %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>WishList </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">WishList</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="user__dashboard">
+        <div class="container">
+          <div class="row no-gutters">
+
+            <div class="col* col-md-4 col-lg-3 user__dashboardLeft">
+              <div class="user__sidebar sticky-top">
+                <div class="side__bar__user">
+                  <h3 class="user__dashboard__title">Account Information</h3>
+                  <ul>
+                    <li class="">
+                      <a href="{% url 'account_info' %}"><i class="las la-user"></i> <span>Personal Information</span></a>
+                    </li>
+                    <li class="active">
+                      <a href="{% url 'address_info' %}"><i class="las la-map-marked-alt"></i> <span>Address Book</span></a>
+                    </li>
+                    <li class="">
+                      <a href="{% url 'wishlist_display' %}"><i class="las la-heart"></i> <span>My WishList</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col* col-md-8 col-lg-9 user__dashboardRight">
+              <div class="dashboard__bg">
+                <h3 class="dashboard__bgTitle">My Wishlist</h3>
+                <div class="p-y user__form">
+                 
+                  <div class="table-responsive custom__table">
+                    <table class=" shop-table cart">
+                      <thead>
+                        <tr>
+                          <th>
+                            <div class="custom__control">
+                              <input id="check-1" type="checkbox" /><label for="check-1"></label> 
+                            </div>
+                          </th>
+                          <th  class="product-name">Product</th>
+                          <th class="product-desc" style="width: 220px;">Description</th>
+                          <th class="product-price">Price</th>
+                          <th class="product-quantity">Qty</th>
+                          <th class="product-total">Total</th>
+                          <th class="product-remove">Action</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for d in data %}
+                        <tr>
+                          <td>
+                            <div class="custom__control">
+                              <input id="check-2" type="checkbox" /><label for="check-2"></label> 
+                            </div>
+                          </td>
+                          <td class="product-thumbnail"><img src="{{d.product.image.url}}" alt="title"></td>
+              
+                          <td class="product-name">
+                            <a href="#">{{d.product.name|truncatechars:100}}</a>
+                            <span class="text-danger d-block">{{d.product.availabilty}}</span>
+
+
+                          </td>
+                          <td class="price-table">Rs {{d.product.new_price}}</td>
+                          <td><input class="form-control" type="number" min="0" max="10" value="{{ total_quantity }}" readonly></td>
+                          <td class="price-table">Rs {{ total_price }}</td>
+                          <td class="product-remove">
+                            <form action="{% url 'add_to_cart' %}" method="post">
+                                {% csrf_token %}
+                                <input type="text" hidden name="product_id" value="{{ d.product.id }}" id="">
+                                <input name="product" type="text" hidden value="{{ d.product.name }}">
+                                <input type="text" name="quantity" value="{{total_quantity}}" hidden id="">
+                                <button class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></button>
+                              </form>
+                          </td>
+                        </tr>
+                        {% endfor %}                     
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.quantity-input').on('input', function() {
+            var quantity = parseInt($(this).val());
+            var price = parseFloat($(this).data('price'));
+            var totalAmount = quantity * price;
+            $(this).closest('tr').find('.total-amount').text('Rs ' + totalAmount.toFixed(2));
+        });
+    });
+</script>
+{% endblock %}

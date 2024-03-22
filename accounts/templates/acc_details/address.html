@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+
+{% include 'includes/ecomsg.html' %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Address </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="#">Home</a></li>
+        <li class="breadcrumb-item active">Address</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="user__dashboard">
+        <div class="container">
+          <div class="row no-gutters">
+
+            <div class="col* col-md-4 col-lg-3 user__dashboardLeft">
+              <div class="user__sidebar sticky-top">
+                <div class="side__bar__user">
+                  <h3 class="user__dashboard__title">Account Information</h3>
+                  <ul>
+                    <li class="">
+                      <a href="{% url 'account_info' %}"><i class="las la-user"></i> <span>Personal Information</span></a>
+                    </li>
+                    <li class="active">
+                      <a href="{% url 'address_info' %}"><i class="las la-map-marked-alt"></i> <span>Address Book</span></a>
+                    </li>
+                    <li class="">
+                      <a href="{% url 'wishlist_display' %}"><i class="las la-heart"></i> <span>My WishList</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col* col-md-8 col-lg-9 user__dashboardRight">
+              <div class="dashboard__bg">
+                <h3 class="dashboard__bgTitle">Address Book</h3>
+                <div class="p-y user__form">
+                  <div class="address__main">
+                    <a href="#" class="address__book">
+                      <i class="las la-plus"></i> Add New Delivery Address
+                    </a>
+                  </div>
+
+                  <form action="{% url 'add_address' %}" method="post">
+                    {% csrf_token %}
+                    <div class="address__block filterFormDisplay">
+                      <div class="border__bg">
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Your Name : </label>
+                            </div>
+                            <div class="col* col-md-3 col-lg-3">
+                              <input type="text" value="" class="form-control" name="fname" placeholder="First Name" required>
+                            </div>
+
+                            <div class="col* col-md-3 col-lg-3">
+                              <input type="text" value="" class="form-control" name="lname" placeholder="Last Name" required>
+                            </div>
+                          </div>
+                        </div>
+  
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>State/Province : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <select name="province" id=""  class="select_2 form-control" required>
+                                <option></option>
+                                <option value="Kathmandu">Kathmandu</option>
+                                <option value="Lalitpur">Lalitpur</option>
+                                <option value="Bhaktapur">Bhaktapur</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Address : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <input type="text" name="address" value="" required class="form-control" placeholder="Address">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Inner Address : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <input type="text" value="" name="inner_address" class="form-control" placeholder="Example: Near this building..">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="row no-gutters">
+                            <div class="col* col-md-4 col-lg-3 col-xl-3">
+                              <label>Phone : </label>
+                            </div>
+                            <div class="col* col-md-6 col-lg-6">
+                              <input type="number" name="dlvr_contact" value="{{data.contact}}" class="form-control" required placeholder="Phone">
+                            </div>
+
+      
+                          </div>
+                        </div>
+
+                        <div class="form-group form__btn">
+                          <button value="" class="btn btn-secondary">Cancel</button>
+                          <button type="submit" value="" class="btn btn-1">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="addressList__box">
+                    <div class="row no-gutters">
+
+                      {% for d in data %}
+                      <div class="col* col-md-6 col-lg-6 address__list">
+                        <div class="address__box">
+                          <div class="addressBox__flex">
+                            {% if d.is_default %}
+                            <div class="ribbon address-ribbon">
+                              <span>Default</span>
+                            </div>
+                            {% endif %}
+
+                            <div class="address__icon">
+                              <i class="las la-home"></i>
+                            </div>
+                            <div class="address__infos">
+                              <ul>
+                                <li> {{d.fname}}</li>
+                                <li>{{d.province}}</li>
+                                <li>{{d.address}}, {% if d.inner_address %} {{d.inner_address}} {% endif %}</li>
+                                <li>{{d.fname}}</li>
+                                <li>Phone: {{d.dlvr_contact}}</li>
+                              </ul>
+                  
+                              <div class="addres__change">
+                                <a href="{% url 'edit_address_display' d.id %}" class=""><i class="las la-edit"></i> Edit</a>
+                                <a href="{% url 'delete_address' d.id %}" class=""><i class="las la-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

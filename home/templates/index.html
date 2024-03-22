@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static 'css/style2.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'includes/ecomsg.html' %}
+    <!-- Banner Stuff -->
+    <section class="banner__prd">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col* col-md-8 col-lg-9 banner__left">
+            <div class="banner-slider slider">
+              <div class="banner__slider">
+                <a href="#">
+                  <img src="{% static 'img/new_banner1.jpg' %}" class="w-100" alt="title">
+                </a>
+              </div>
+
+              <div class="banner__slider">
+                <a href="#">
+                  <img src="{% static 'img/banner2.jpg' %}" class="w-100" alt="title">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col* col-md-4 col-lg-3 banner__right">
+            <div class="banner__side">
+              <a href="#">
+                <img src="{% static 'img/banner2.png' %}" class="w-100" title="">
+              </a>
+            </div>
+
+            <div class="banner__side">
+              <a href="#">
+                <img src="{% static 'img/banner3.png' %}" class="w-100" title="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Stuff -->
+    <main>
+      <!-- First main -->
+      <section class="top__ftItem section__top">
+        <div class="container">
+          <div class="row">
+            <div class="col* col-md-12 col-lg-4 special__offer">
+              <div class="prd__box">
+                <div class="spc__text">
+                  <span>special Offer</span>
+                </div>
+                <h2><a href="#">{{special.name|truncatewords:4}}</a></h2>
+                <p>{{special.description|truncatewords:20}}</p>
+                <div class="prd__price">
+                  {% if special.discount %}
+                  <del>NRs . {{special.price}}</del>
+                  {% endif %}
+                  <span class="new__price">NRs . {{special.new_price}}</span>
+                </div>
+                <a href="#">
+                  <figure>
+                    <img src="{{special.image.url}}" class="img-fluid" alt="title">
+                  </figure>
+                </a>
+
+                <div class="btn__cart">
+                  <a href="#" class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></a>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col* col-md-12 col-lg-8 prd__class">
+              <div class="row no-gutters">
+                {% for d in data|slice:":8" %}
+                <div class="col* col-md-3 col-lg-3 p-0 prd__list prd__xs">
+                  <div class="single__prd">
+                    <a href="{% url 'Product_details_display' d.id %}">
+                      <figure>
+                        <img src="{{d.image.url}}" class="img-fluid" alt="title">
+
+      
+                      </figure>
+                    </a>
+
+                    <div class="singlePrd__infos">
+                      <div class="prd__star">
+                        <i class="las la-star"></i>
+                        <i class="las la-star"></i>
+                        <i class="las la-star"></i>
+                        <i class="las la-star"></i>
+                        <i class="las la-star-half-alt"></i>
+                      </div>
+                      <h3><a href="#">{{ d.name|truncatewords:4 }}</a></h3>
+                      <div class="prd__price">
+                        {% if d.discount %}
+                        <del>NRs . {{d.price}}</del>
+                        {% endif %}
+                        <span class="new__price">NRs . {{d.new_price}}</span>
+                      </div>
+                    </div>
+
+                    <div class="btn__cart">
+                      <form action="{% url 'add_to_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" hidden name="product_id" value="{{d.id}}" id="">
+                        <input name="product" type="text" hidden value="{{d.name}}">
+                        <input type="text" name="quantity" value="1" hidden id="">
+                        <button class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></button>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Second Top  -->
+      <!-- New Arrival -->
+      <section class="popular__prd section__top">
+        <div class="container">
+          <div class="title__head title__head--flex">
+            <h2>New Arrival</h2>
+
+            <div class="view__btn">
+              <a href="#" class="btn btn-theme">View all</a>
+            </div>
+
+          </div>
+
+          <div class="custom__prd">
+            <div class="flex__prd">
+              {% for d in new|slice:":12" %}
+              <div class="prd-6 single__prd">
+                <a href="{% url 'Product_details_display' d.id %}">
+                  <figure>
+                    <img src="{{d.image.url}}" class="img-fluid" alt="title">
+                  </figure>
+                </a>
+
+                <div class="singlePrd__infos">
+                  <div class="prd__star">
+                    <i class="las la-star"></i>
+                    <i class="las la-star"></i>
+                    <i class="las la-star"></i>
+                    <i class="las la-star"></i>
+                    <i class="las la-star-half-alt"></i>
+                  </div>
+                  <h3><a href="#">{{d.name}}</a></h3>
+                  <div class="prd__price">
+                    {% if d.discount %}
+                    <del>NRs . {{d.price}}</del>
+                    {% endif %}
+                    <span class="new__price">NRs . {{d.new_price}}</span>
+                  </div>
+                </div>
+
+                <div class="btn__cart">
+                  <form action="{% url 'add_to_cart' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" hidden name="product_id" value="{{d.id}}" id="">
+                    <input name="product" type="text" hidden value="{{d.name}}">
+                    <input type="text" name="quantity" value="1" hidden id="">
+                    <button class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></button>
+                  </form>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promotion THingie -->
+      <section class="promotion__prd section__top">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="col* col-sm-6 col-md-6 col-lg-6 prom__adv prom__adv--2">
+              <a href="#" title="">
+                <img src="{% static 'img/prom1.jpg' %}" class="img-responsive" alt="title">
+              </a>
+            </div>
+
+            <div class="col* col-sm-6 col-md-6 col-lg-6 prom__adv prom__adv--2">
+              <a href="#" title="">
+                <img src="{% static 'img/prom2.jpg' %}" class="img-responsive" alt="title">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Stuff -->
+      <section class="popular__prd section__top">
+        <div class="container">
+          <div class="title__head title__head--flex">
+            <h2>Popular Product</h2>
+
+            <div class="view__btn">
+              <a href="#" class="btn btn-theme">View all</a>
+            </div>
+          </div>
+
+          <div class="prd_slider">
+            <div class="popular-slider slider">
+              {% for d in data %}
+              <div class="prd__list">
+                <div class="single__prd">
+                  <a href="{% url 'Product_details_display' d.id %}">
+                    <figure>
+                      <img src="{{d.image.url}}" class="img-fluid" alt="title">
+                    </figure>
+                  </a>
+
+                  <div class="singlePrd__infos">
+                    <div class="prd__star">
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star-half-alt"></i>
+                    </div>
+                    <h3><a href="#">{{d.name}}</a></h3>
+                    {% if d.discount %}
+                    <del>NRs .{{d.price}}</del>
+                    {% endif %}
+                    <span class="new__price">NRs . {{d.new_price}}</span>
+                  </div>
+
+                  <div class="btn__cart">
+                    <form action="{% url 'add_to_cart' %}" method="post">
+                      {% csrf_token %}
+                      <input type="text" hidden name="product_id" value="{{d.id}}" id="">
+                      <input name="product" type="text" hidden value="{{d.name}}">
+                      <input type="text" name="quantity" value="1" hidden id="">
+                      <button class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Email stuff -->
+      <section class="newsletter__col section__top">
+        <div class="newsletter__wrap">
+          <div class="container">
+            <div class="row">
+              <div class="col* col-md-5 col-lg-5 newsletter__left">
+                <h3>Sign Up For Newsletters</h3>
+                <p>Be the First to Know. Sign up for newsletter today ! </p>
+              </div>
+
+              <div class="col* col-md-7 col-lg-78 newsletter__right">
+                <form>
+                  <input type="text" value="" name="" placeholder="Enter Your Email" class="form-control">
+                  <button type="submit" value="" class="btn btn-1">Sign Up</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="optService__col section__top">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="col* col-sm-6 col-md-3 col-lg-3 optService__list">
+              <div class="optService__bg">
+                <figure>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="69.723" height="40" viewBox="0 0 69.723 45.573">
+                    <path id="shipping" d="M69.722,96.646c0-.013,0-.026,0-.039a1.6,1.6,0,0,0-1.605-1.57h-.421L61.186,82.453a1.6,1.6,0,0,0-1.427-.862l-11.112,0,.424-3.36a4.566,4.566,0,0,0-4.6-5.056H9.978a1.7,1.7,0,0,0-1.686,1.536l-.346,2.769H27.6a2.239,2.239,0,0,1,2.25,2.31,2.385,2.385,0,0,1-2.371,2.31H20.921l0,.01H1.677A1.686,1.686,0,0,0,0,83.741a1.583,1.583,0,0,0,1.591,1.634H27.073a2.4,2.4,0,0,1,2.034,2.444,2.555,2.555,0,0,1-2.519,2.474H9.02a1.7,1.7,0,0,0-1.693,1.65,1.6,1.6,0,0,0,1.607,1.65H26.294a2.4,2.4,0,0,1,2.069,2.449,2.555,2.555,0,0,1-2.54,2.475H5.906v0H4.233a1.7,1.7,0,0,0-1.693,1.65,1.6,1.6,0,0,0,1.607,1.65H5.59l-.565,5.911a4.566,4.566,0,0,0,4.6,5.056h1.246A7.2,7.2,0,0,0,18,118.746a7.686,7.686,0,0,0,7.436-5.96H40.982a5.268,5.268,0,0,0,3.381-1.268,4.594,4.594,0,0,0,3.22,1.268h.256a7.2,7.2,0,0,0,7.124,5.96,7.686,7.686,0,0,0,7.436-5.96h1.026a5.42,5.42,0,0,0,5.285-4.845L69.716,96.8c0-.015,0-.03,0-.045s0-.045.005-.068S69.722,96.66,69.722,96.646Zm-51.637,18.8a4,4,0,0,1-4.018-4.125,4.264,4.264,0,0,1,4.234-4.126,4,4,0,0,1,4.017,4.126A4.263,4.263,0,0,1,18.085,115.445Zm36.964,0a4,4,0,0,1-4.018-4.125,4.264,4.264,0,0,1,4.234-4.126,4,4,0,0,1,4.017,4.126A4.263,4.263,0,0,1,55.049,115.445Zm10.373-7.716a1.987,1.987,0,0,1-1.911,1.756H62.4a7.2,7.2,0,0,0-7.05-5.591,7.687,7.687,0,0,0-7.342,5.591h-.34a1.4,1.4,0,0,1-1.054-.443,1.42,1.42,0,0,1-.348-1.1l2.081-23.052h4.779l-.757,8.392a4.566,4.566,0,0,0,4.6,5.056h9.3Z" transform="translate(0 -73.172)" fill="#017af2"/>
+                  </svg>
+                </figure>
+                <h4>Free Delivery</h4>
+                <p>For all orders over Rs 120 </p>
+              </div>
+            </div>
+
+            <div class="col* col-sm-6 col-md-3 col-lg-3 optService__list">
+              <div class="optService__bg">
+                <figure>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="47.61" height="50" viewBox="0 0 47.61 54.091">
+                    <g id="refund" transform="translate(-11.608)">
+                      <g id="Group_12" data-name="Group 12" transform="translate(11.608)">
+                        <g id="Group_11" data-name="Group 11" transform="translate(0)">
+                          <path id="Path_1" data-name="Path 1" d="M50.017,11.474l-2.609,3.352a19.571,19.571,0,1,1-10.921-4.074L32.815,14.6l2.724,2.6,5.8-6.086v0l2.6-2.727L41.212,5.8h0L35.127,0l-2.6,2.727L36.492,6.5A23.8,23.8,0,0,0,31.714,53.8a24.058,24.058,0,0,0,3.75.295A23.814,23.814,0,0,0,50.017,11.474Z" transform="translate(-11.608)" fill="#017af2"/>
+                          <path id="Path_2" data-name="Path 2" d="M78.824,92.819h0V90.374c2.9-.324,5.718-2.154,5.718-5.63,0-4.723-4.392-5.264-7.6-5.659-2.051-.245-3.621-.53-3.621-1.772,0-1.727,2.435-1.914,3.482-1.914a4.726,4.726,0,0,1,3.775,1.663l.164.271,3.222-1.491-.159-.325a6.359,6.359,0,0,0-4.983-3.451V69.913H75.051v2.143c-3.512.518-5.6,2.467-5.6,5.256,0,4.547,4.129,5.009,7.141,5.347,2.685.317,3.934.98,3.934,2.085,0,2.111-2.924,2.276-3.82,2.276-2,0-3.919-1-4.475-2.317l-.138-.326L68.6,85.86l.14.326a7.382,7.382,0,0,0,6.317,4.306v2.327Z" transform="translate(-52.687 -50.397)" fill="#017af2"/>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </figure>
+                <h4>Easy Return</h4>
+                <p>Easy return facilities </p>
+              </div>
+            </div>
+
+            <div class="col* col-sm-6 col-md-3 col-lg-3 optService__list">
+              <div class="optService__bg">
+                <figure>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="46.826" height="50" viewBox="0 0 46.826 61.474">
+                    <g id="support" transform="translate(0)">
+                      <path id="Path_3" data-name="Path 3" d="M0,365.4V378.25H46.826V365.4a5.409,5.409,0,0,0-5.4-5.4H5.4A5.409,5.409,0,0,0,0,365.4Zm3.6,0a1.8,1.8,0,0,1,1.8-1.8H7.2v11.046H3.6Zm7.2-1.8h4.657l7.95,7.95,7.95-7.95H36.02v11.046H10.806Zm32.418,1.8v9.245h-3.6V363.6h1.8A1.8,1.8,0,0,1,43.224,365.4Zm-16.955-1.8-2.856,2.856L20.557,363.6Zm0,0" transform="translate(0 -316.776)" fill="#017af2"/>
+                      <path id="Path_4" data-name="Path 4" d="M36.883,36.02h2.738v-3.6h1.8a5.409,5.409,0,0,0,5.4-5.4v-3.6A23.413,23.413,0,0,0,0,23.413v3.6a5.409,5.409,0,0,0,5.4,5.4H8.131a16.2,16.2,0,0,0,28.752,3.6Zm4.539-7.2h-1.9a16.2,16.2,0,0,0,.1-1.8v-3.6a16.2,16.2,0,0,0-.1-1.8h1.9a1.8,1.8,0,0,1,1.8,1.8v3.6A1.8,1.8,0,0,1,41.422,28.816ZM23.413,3.6A19.846,19.846,0,0,1,42.5,18.119a5.405,5.405,0,0,0-1.082-.109H38.694a16.209,16.209,0,0,0-30.563,0H5.4a5.405,5.405,0,0,0-1.082.109A19.846,19.846,0,0,1,23.413,3.6ZM33.755,16.213a12.658,12.658,0,0,1-10.343,5.4H10.935a12.6,12.6,0,0,1,22.821-5.4ZM5.4,28.816a1.8,1.8,0,0,1-1.8-1.8v-3.6a1.8,1.8,0,0,1,1.8-1.8H7.3a16.2,16.2,0,0,0-.1,1.8v3.6a16.2,16.2,0,0,0,.1,1.8Zm5.4-1.8v-1.8H23.413a16.27,16.27,0,0,0,12.08-5.407,12.549,12.549,0,0,1,.527,3.606v3.6a12.533,12.533,0,0,1-1.218,5.4H28.815l-1.582-1.582a5.4,5.4,0,0,1-7.641,0l-2.547,2.547a9.005,9.005,0,0,0,11.77.837v1.8h3.41a12.6,12.6,0,0,1-21.42-9Zm0,0" fill="#017af2"/>
+                    </g>
+                  </svg>
+                </figure>
+                <h4>Online Supports</h4>
+                <p>Support 24 hours a day</p>
+              </div>
+            </div>
+
+            <div class="col* col-sm-6 col-md-3 col-lg-3 optService__list">
+              <div class="optService__bg">
+                <figure>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="66.372" height="50" viewBox="0 0 66.372 43">
+                    <path id="Icon_material-payment" data-name="Icon material-payment" d="M62.735,6H9.637c-3.684,0-6.6,2.392-6.6,5.375L3,43.625C3,46.608,5.954,49,9.637,49h53.1c3.684,0,6.637-2.392,6.637-5.375V11.375C69.372,8.392,66.419,6,62.735,6Zm0,37.625H9.637V27.5h53.1Zm0-26.875H9.637V11.375h53.1Z" transform="translate(-3 -6)" fill="#017af2"/>
+                  </svg>
+                </figure>
+                <h4>Payment Comfort</h4>
+                <p>We ensure secure payment</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+{% endblock %}
+

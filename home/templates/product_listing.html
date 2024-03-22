@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/product_listing.css' %}">
+{% endblock %}
+{% block content %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Shop List View </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">Shop List View</li>
+      </ol>
+    </div>
+</section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="page__listing">
+        <div class="container">
+
+          <div class="row ">
+            <div class="col* col-md-4 col-lg-3 col__left">
+              <div class="side__filter sticky-top">
+                <form method="POST" action="{% url 'search_products' %}">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search">
+                    <button type="submit"><i class="las la-search"></i></button>
+                  </div>
+                </form>
+
+                <form id="searchForm" action="{% url 'filter_cat' %}" method="post">
+                  {% csrf_token %}
+                  <div class="filter__list">
+                    <h3 class="filter__title">Product Categories</h3>
+                    <ul>
+                        <li class="custom-checkbox">
+                            <input id="check-1" type="checkbox" name="category" value="backpack" />
+                            <label for="check-1">Back Pack</label>
+                        </li>
+                        <li class="custom-checkbox">
+                            <input id="check-2" type="checkbox" name="category" value="waistbag" />
+                            <label for="check-2">Waist Bag</label>
+                        </li>
+                        <li class="custom-checkbox">
+                            <input id="check-3" type="checkbox" name="category" value="other" />
+                            <label for="check-3">Others</label>
+                        </li>
+                    </ul>
+                </div>
+              </form>
+
+                <div class="filter__list">
+                  <h3 class="filter__title">Filter by Price</h3>
+                  <div class="range_slide">
+                    <form action="{% url 'filter_by_price' %}" method="post">
+                      {% csrf_token %}
+                        <strong>From:</strong><input style="width: 7rem;" type="number" name="from">
+                        &nbsp; &nbsp; &nbsp;
+                        <strong>To: </strong><input style="width: 7rem;" type="number" name="to">
+                        <button type="submit"><i class="las la-search"></i></button>
+                    </form>
+                  </div>
+                  
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col* col-md-8 col-lg-9 col__right">
+             <div class="prd__filter">
+               <div class="prd__filterFlex">
+                 <div class="prd__filter--left">
+                  <p>Showing {{total.count}} Results</p>
+                 </div>
+
+                 <div class="prd__filter--right">
+                  <select class="customSelect">
+                    <option data-display="Sort Price by"> </option>
+                    <option value="1">Low to High</option>
+                    <option value="2">High To Low</option>
+                    <option value="4">Sort by Lates</option>
+                  </select>
+                 </div>
+               </div>
+             </div>
+              
+              <div class="row no-gutters">
+                {% for d in data %}
+                <div class="col* col-md-6 col-lg-3 prd__list1 prd__xs">
+                  <div class="single__prd">
+                    <a href="#">
+                      <figure>
+                        <img src="{{d.image.url}}" class="img-fluid" alt="title">
+                      </figure>
+                    </a>
+
+                    <div class="singlePrd__infos">
+                      <div class="prd__star">
+                        <i class="las la-star"></i>
+                        <i class="las la-star"></i>
+                        <i class="las la-star"></i>
+                        <i class="las la-star"></i>
+                        <i class="las la-star-half-alt"></i>
+                      </div>
+                      <h3><a href="#">{{d.name}}</a></h3>
+                      <div class="prd__price">
+                        {% if d.discount %}
+                        <del>NRs . {{d.price}}</del>
+                        {% endif %}
+                        <span class="new__price">NRs .{{d.new_price}}</span>
+                      </div>
+                    </div>
+
+                    <div class="btn__cart">
+                      <form action="{% url 'add_to_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" hidden name="product_id" value="{{d.id}}" id="">
+                        <input name="product" type="text" hidden value="{{d.name}}">
+                        <input type="text" name="quantity" value="1" hidden id="">
+                        <button class="btn btn-theme"> add to cart <i class="las la-cart-arrow-down"></i></button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
+              <!-- Pagination -->
+              <div class="prd__pagination">
+                <nav>
+                    <ul class="pagination d-flex justify-content-center flex-wrap pagination-flat pagination-success">
+                        {% for num in data.paginator.page_range %}
+                            {% if data.number == num %}
+                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}" data-abc="true">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+
+<script>
+  // Get reference to the checkboxes
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // Function to submit the form when checkbox is clicked
+    function handleCheckboxClick() {
+        // Submit the form when any checkbox is clicked
+        document.getElementById('searchForm').submit();
+    }
+
+    // Add event listeners to the checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', handleCheckboxClick);
+    });
+</script>
+{% endblock %}

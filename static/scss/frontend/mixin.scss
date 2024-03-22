@@ -1,0 +1,62 @@
+@mixin border-radius(){
+  border-radius: 0;
+}
+@mixin border-radius1(){
+  border-radius: 50%;
+}
+@mixin transition(){
+  transition: all ease-in-out .5s;
+}
+@mixin transition1(){
+  transition: all ease-in-out .8s;
+}
+@mixin transform(){
+  transform:scale(1.1);
+}
+@mixin global-transition(){
+  transition:all ease-in-out 0.5s;
+}
+@mixin box-shadow(){
+  box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+@mixin box-shadow1(){
+  box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+@mixin box-shadow2(){
+  box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+@mixin global-scale(){
+  transform:scale(1.1);
+  -webkit-transform:scale(1.1);
+  -moz-transform:scale(1.1);
+  -ms-transform:scale(1.1);
+  -o-transform:scale(1.1);
+}
+@mixin global-transform(){
+  transform: translate(0,-1000px);
+  -webkit-transform: translate(0,-1000px);
+  -moz-transform: translate(0,-1000px);
+  -ms-transform: translate(0,-1000px);
+  -o-transform: translate(0,-1000px);
+}
+@mixin global-transform-main(){
+  transform: translate(0,0);
+  -webkit-transform: translate(0,0);
+  -moz-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  -o-transform: translate(0,0);
+}
+@mixin global-radius(){
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+@mixin border-radius1(){
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

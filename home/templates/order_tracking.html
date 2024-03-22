@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<section class="page__breadcrumb">
+    <div class="container">
+      <div class="breadcrumb__title">
+        <h2>Order Track </h2>
+      </div>
+      <ol class="breadcrumb indigo lighten-4">
+        <li class="breadcrumb-item"><a class="black-text" href="#">Home</a></li>
+        <li class="breadcrumb-item active">Order Track</li>
+      </ol>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="main__content">
+      <div class="ordertrack__detail">
+        {% for d in data %}
+        <div class="container">
+          <div class="track-order">
+            <div class="d-flex flex-row justify-content-between align-items-center order">
+              <div class="d-flex flex-column order-details">
+                <span><strong>Order Number</strong></span><span class="date">{{d.order_number}}</span>
+              </div>
+            </div>
+            <hr class="divider mb-4">
+      
+            <div class="col">
+              <ul class="order-tracking">
+                <li class="step active">
+                  <div class="track-div">
+                    <span class="track-no">1</span>
+                  </div> 
+                  <div class="order-infos1">Order Placed</div>
+                  
+                </li>
+
+                {% if d.order_status == 'processing' or d.order_status == 'shipped' %}
+                <li class="step active">
+                {% else %}
+                <li class="step">
+                {% endif %}
+                  <div  class="track-div"><span class="track-no">2</span></div>
+                  <div class="order-infos1">Order Processed</div>
+                </li>
+
+                {% if d.order_status == 'shipped' or d.order_status == 'delivered' %}
+                <li class="step active">
+                {% else %}
+                <li class="step">
+                {% endif %}
+                  <div  class="track-div"><span class="track-no">3</span></div> 
+                  <div class="order-infos1">Out for delivery</div>
+                </li>
+
+                {% if d.order_status == 'delivered' %}
+                <li class="step active">
+                {% else %}
+                <li class="step">
+                {% endif %}
+                  <div  class="track-div"><span class="track-no">4</span></div> 
+                  <div class="order-infos1">Delivered</div>
+                  
+                </li>
+              </ul>
+            </div>
+      
+          </div>
+
+ 
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  </main>
+{% endblock %}
